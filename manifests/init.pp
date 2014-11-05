@@ -8,6 +8,11 @@
 #   Explanation of what this parameter affects and what it defaults to.
 #
 class xlrelease (
+  $os_user      = $xlrelease::params::os_user,
+  $os_group     = $xlrelease::params::os_group,
+  $xlr_version  = $xlrelease::params::xlr_version,
+  $xlr_basedir  = $xlrelease::params::xlr_basedir,
+  $install_java = $xlrelease::params::install_java,
 ) inherits xlrelease::params {
 
   # validate parameters here
