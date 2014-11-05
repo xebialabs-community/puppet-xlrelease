@@ -3,6 +3,7 @@
 class xlrelease::install {
 
   $xlr_version  = $xlrelease::xlr_version
+  $xlr_basedir  = $xlrelease::xlr_basedir
   $install_java = $xlrelease::install_java
   $os_user      = $xlrelease::os_user
   $os_group     = $xlrelease::os_group

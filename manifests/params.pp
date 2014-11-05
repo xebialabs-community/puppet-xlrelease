@@ -4,13 +4,9 @@
 # It sets variables according to platform
 #
 class xlrelease::params {
-  case $::osfamily {
-    'RedHat': {
-      $package_name = 'xlrelease'
-      $service_name = 'xlrelease'
-    }
-    default: {
-      fail("${::osfamily} not supported")
-    }
-  }
+  $os_user      = 'xl-release'
+  $os_group     = 'xl-release'
+  $xlr_version  = '4.0.13'
+  $xlr_basedir  = '/opt'
+  $install_java = true
 }
