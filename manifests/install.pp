@@ -14,8 +14,8 @@ class xlrelease::install {
 
   #flow controll
   anchor{'install':}
-  -> Anchor['server::install']
-  -> Anchor['server::postinstall']
+  -> Anchor['server_install']
+  -> Anchor['server_postinstall']
   -> File['conf dir link', 'log dir link']
   -> File[$server_home_dir]
   -> File["/etc/init.d/${productname}"]
@@ -82,7 +82,7 @@ class xlrelease::install {
 
       $server_zipfile = "xl-release-${xlr_version}-server.zip"
 
-      Anchor['server::install']
+      Anchor['server_install']
 
       -> file { "${tmp_dir}/${server_zipfile}": source => "${puppetfiles_xlrelease_source}/${server_zipfile}" }
 
@@ -95,10 +95,10 @@ class xlrelease::install {
         user    => $os_user
       }
 
-      -> Anchor['server::postinstall']
+      -> Anchor['server_postinstall']
     }
 
-  default       : {
+  default       : { fail('unsupported installation type')
     }
   }
 
