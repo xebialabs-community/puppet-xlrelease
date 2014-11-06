@@ -86,7 +86,7 @@ class xlrelease::install {
 
       -> file { "${tmp_dir}/${server_zipfile}": source => "${puppetfiles_xlrelease_source}/${server_zipfile}" }
 
-      -> file { $server_install_dir: ensure => directory }
+      -> file { $server_install_dir: ensure => directory, owner => $os_user, group => $os_group }
 
       -> exec { 'unpack server file':
         command => "/usr/bin/unzip ${tmp_dir}/${server_zipfile};/bin/cp -rp ${tmp_dir}/xl-release-${xlr_version}-server/* ${server_install_dir}",
