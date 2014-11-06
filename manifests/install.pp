@@ -2,12 +2,17 @@
 #
 class xlrelease::install {
 
-  $xlr_version  = $xlrelease::xlr_version
-  $xlr_basedir  = $xlrelease::xlr_basedir
-  $install_java = $xlrelease::install_java
-  $os_user      = $xlrelease::os_user
-  $os_group     = $xlrelease::os_group
+  $xlr_version    = $xlrelease::xlr_version
+  $xlr_basedir    = $xlrelease::xlr_basedir
+  $xlr_serverhome = $xlrelease::xlr_serverhome
+  $install_java   = $xlrelease::install_java
+  $os_user        = $xlrelease::os_user
+  $os_group       = $xlrelease::os_group
   $puppetfiles_xlrelease_source = $xlrelease::puppetfiles_xlrelease_source
+
+
+  #figure out the server install dir
+  $server_install_dir   = "${xlr_basedir}/xl-release-${version}-server"
 
   # Make this a private class
   if $caller_module_name != $module_name {
@@ -53,7 +58,7 @@ class xlrelease::install {
 
   # base dir
 
-  file { $base_dir:
+  file { $xlr_basedir:
     ensure => directory,
     owner  => $os_user,
     group  => $os_group,
@@ -85,5 +90,43 @@ class xlrelease::install {
   default       : {
     }
   }
+
+  file { 'log dir link':
+    ensure => link,
+    path   => "/var/log/xl-release",
+    target => "${server_install_dir}/log";
+  }
+
+  file { 'conf dir link':
+    ensure => link,
+    path   => "/etc/xl-release",
+    target => "${server_install_dir}/conf"
+  }
+
+
+  # setup homedir
+  file { $xlr_serverhome:
+    ensure => link,
+    target => $server_install_dir,
+    owner  => $os_user,
+    group  => $os_group
+  }
+
+  file { "${xlr_serverhome}/scripts":
+    ensure => directory,
+    owner  => $os_user,
+    group  => $os_group
+  }
+## put the init script in place
+## the template uses the following variables:
+## @os_user
+## @server_install_dir
+#file { "/etc/init.d/${productname}":
+#  content => template("xldeploy/xldeploy-initd-${::osfamily}.erb"),
+#  owner   => 'root',
+#  group   => 'root',
+#  mode    => '0700'
+#}
+
 
 }

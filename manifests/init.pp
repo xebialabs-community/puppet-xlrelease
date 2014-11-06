@@ -12,6 +12,7 @@ class xlrelease (
   $os_group                     = $xlrelease::params::os_group,
   $xlr_version                  = $xlrelease::params::xlr_version,
   $xlr_basedir                  = $xlrelease::params::xlr_basedir,
+  $xlr_serverhome               = $xlrelease::params::xlr_serverhome,
   $install_java                 = $xlrelease::params::install_java,
   $puppetfiles_xlrelease_source = $xlrelease::params::puppetfiles_xlrelease_source,
 ) inherits xlrelease::params {
