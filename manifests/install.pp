@@ -150,7 +150,7 @@ class xlrelease::install {
       -> file{"${xlr_serverhome}/conf/xl-release-license.lic":
         owner  => $os_user,
         group  => $os_group,
-        source => $license_source,
+        source => $xlr_licsource,
       }
       -> Anchor['install_end']
     }
