@@ -8,6 +8,7 @@ class xlrelease::install {
   $install_java   = $xlrelease::install_java
   $os_user        = $xlrelease::os_user
   $os_group       = $xlrelease::os_group
+  $tmp_dir        = $xlrelease::tmp_dir
   $puppetfiles_xlrelease_source = $xlrelease::puppetfiles_xlrelease_source
 
 

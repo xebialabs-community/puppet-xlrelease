@@ -10,6 +10,7 @@
 class xlrelease (
   $os_user                      = $xlrelease::params::os_user,
   $os_group                     = $xlrelease::params::os_group,
+  $tmp_dir                      = $xlrelease::params::tmp_dir,
   $xlr_version                  = $xlrelease::params::xlr_version,
   $xlr_basedir                  = $xlrelease::params::xlr_basedir,
   $xlr_serverhome               = $xlrelease::params::xlr_serverhome,

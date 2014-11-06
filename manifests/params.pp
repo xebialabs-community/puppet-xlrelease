@@ -4,11 +4,13 @@
 # It sets variables according to platform
 #
 class xlrelease::params {
+  $xlr_version    = '4.0.13'
+  $xlr_basedir    = '/opt/xl-release'
+  $xlr_serverhome = "/opt/xl-release/xl-release-server"
+
   $os_user        = 'xl-release'
   $os_group       = 'xl-release'
-  $xlr_version    = '4.0.13'
-  $xlr_basedir    = '/opt'
-  $xlr_serverhome = "/opt/xl-release/xl-release-server"
+  $tmp_dir        = '/var/tmp'
   $install_java   = true
   $puppetfiles_xlrelease_source  = undef
 }
