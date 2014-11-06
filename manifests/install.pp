@@ -13,7 +13,7 @@ class xlrelease::install {
 
 
   #figure out the server install dir
-  $server_install_dir   = "${xlr_basedir}/xl-release-${version}-server"
+  $server_install_dir   = "${xlr_basedir}/xl-release-${xlr_version}-server"
 
   # Make this a private class
   if $caller_module_name != $module_name {
