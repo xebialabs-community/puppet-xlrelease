@@ -11,6 +11,15 @@ class xlrelease::install {
   $tmp_dir        = $xlrelease::tmp_dir
   $puppetfiles_xlrelease_source = $xlrelease::puppetfiles_xlrelease_source
 
+  #flow controll
+  anchor{'install':}
+  -> Anchor['server::install']
+  -> Anchor['server::postinstall']
+  -> File['conf dir link', 'log dir link']
+  -> File[$server_home_dir]
+  -> File["/etc/init.d/${productname}"]
+  -> anchor{'install_end':}
+
 
   #figure out the server install dir
   $server_install_dir   = "${xlr_basedir}/xl-release-${xlr_version}-server"
