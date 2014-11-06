@@ -17,8 +17,8 @@ class xlrelease::install {
   -> anchor{'server_install':}
   -> anchor{'server_postinstall':}
   -> File['conf dir link', 'log dir link']
-  -> File[$server_home_dir]
-  -> File["/etc/init.d/${productname}"]
+  -> File[$xlr_serverhome]
+#  -> File["/etc/init.d/${productname}"]
   -> anchor{'install_end':}
 
 
