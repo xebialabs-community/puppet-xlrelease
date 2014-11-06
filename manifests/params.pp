@@ -12,5 +12,6 @@ class xlrelease::params {
   $os_group       = 'xl-release'
   $tmp_dir        = '/var/tmp'
   $install_java   = true
+  $install_type   = 'puppetfiles'
   $puppetfiles_xlrelease_source  = undef
 }
