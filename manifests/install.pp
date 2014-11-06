@@ -7,6 +7,7 @@ class xlrelease::install {
   $install_java = $xlrelease::install_java
   $os_user      = $xlrelease::os_user
   $os_group     = $xlrelease::os_group
+  $puppetfiles_xlrelease_source = $xlrelease::puppetfiles_xlrelease_source
 
   # Make this a private class
   if $caller_module_name != $module_name {

@@ -9,4 +9,5 @@ class xlrelease::params {
   $xlr_version  = '4.0.13'
   $xlr_basedir  = '/opt'
   $install_java = true
+  $puppetfiles_xlrelease_source  = undef
 }
