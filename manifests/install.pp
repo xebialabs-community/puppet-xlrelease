@@ -154,7 +154,7 @@ class xlrelease::install {
       }
       -> Anchor['install_end']
     }
-    default : {}
+    default : { fail('xlr_licsource unsupported')}
   }
 
 
