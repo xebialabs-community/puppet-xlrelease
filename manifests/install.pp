@@ -142,7 +142,7 @@ class xlrelease::install {
         password             => $download_password,
         destinationdirectory => "${server_home_dir}/conf"
       }
-      -> Anchor['server::installend']
+      -> Anchor['install_end']
     }
     /^puppet/ : {
       File[$xlr_serverhome]
@@ -152,7 +152,7 @@ class xlrelease::install {
         group  => $os_group,
         source => $license_source,
       }
-      -> Anchor['server::installend']
+      -> Anchor['install_end']
     }
     default : {}
   }
