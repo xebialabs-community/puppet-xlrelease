@@ -2,14 +2,15 @@
 #
 class xlrelease::install {
 
-  $xlr_version    = $xlrelease::xlr_version
-  $xlr_basedir    = $xlrelease::xlr_basedir
-  $xlr_serverhome = $xlrelease::xlr_serverhome
-  $install_type   = $xlrelease::install_type
-  $install_java   = $xlrelease::install_java
-  $os_user        = $xlrelease::os_user
-  $os_group       = $xlrelease::os_group
-  $tmp_dir        = $xlrelease::tmp_dir
+  $xlr_version     = $xlrelease::xlr_version
+  $xlr_basedir     = $xlrelease::xlr_basedir
+  $xlr_serverhome  = $xlrelease::xlr_serverhome
+  $xlr_licsource   = $xlrelease::xlr_licsource
+  $install_type    = $xlrelease::install_type
+  $install_java    = $xlrelease::install_java
+  $os_user         = $xlrelease::os_user
+  $os_group        = $xlrelease::os_group
+  $tmp_dir         = $xlrelease::tmp_dir
   $puppetfiles_xlrelease_source = $xlrelease::puppetfiles_xlrelease_source
 
   #flow controll
@@ -128,6 +129,36 @@ class xlrelease::install {
     owner  => $os_user,
     group  => $os_group
   }
+
+
+  case $xlr_licsource {
+    /^http/ : {
+      File[$xlr_serverhome]
+
+      -> xldeploy_license_install{ $license_source:
+        owner                => $os_user,
+        group                => $os_group,
+        user                 => $download_user,
+        password             => $download_password,
+        destinationdirectory => "${server_home_dir}/conf"
+      }
+      -> Anchor['server::installend']
+    }
+    /^puppet/ : {
+      File[$xlr_serverhome]
+
+      -> file{"${xlr_serverhome}/conf/xl-release-license.lic":
+        owner  => $os_user,
+        group  => $os_group,
+        source => $license_source,
+      }
+      -> Anchor['server::installend']
+    }
+    default : {}
+  }
+
+
+
 ## put the init script in place
 ## the template uses the following variables:
 ## @os_user

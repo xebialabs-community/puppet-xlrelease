@@ -7,6 +7,7 @@ class xlrelease::params {
   $xlr_version    = '4.0.13'
   $xlr_basedir    = '/opt/xl-release'
   $xlr_serverhome = "/opt/xl-release/xl-release-server"
+  $xlr_licsource  = undef
 
   $os_user        = 'xl-release'
   $os_group       = 'xl-release'

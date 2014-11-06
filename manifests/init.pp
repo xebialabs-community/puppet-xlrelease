@@ -14,6 +14,7 @@ class xlrelease (
   $xlr_version                  = $xlrelease::params::xlr_version,
   $xlr_basedir                  = $xlrelease::params::xlr_basedir,
   $xlr_serverhome               = $xlrelease::params::xlr_serverhome,
+  $xlr_licsource                = $xlrelease::params::xlr_licsource,
   $install_java                 = $xlrelease::params::install_java,
   $install_type                 = $xlrelease::params::install_type,
   $puppetfiles_xlrelease_source = $xlrelease::params::puppetfiles_xlrelease_source,
