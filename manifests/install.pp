@@ -66,7 +66,7 @@ class xlrelease::install {
     ensure     => present,
     gid        => $os_group,
     managehome => false,
-    home       => $os_user_home
+    home       => $xlr_serverhome
   }
 
   # base dir
