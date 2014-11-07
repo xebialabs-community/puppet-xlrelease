@@ -53,6 +53,9 @@ class xlrelease::config {
     section => '',
   }
 
+  # actual resources
+  file{"${xlr_serverhome}/conf/xl-release-server.conf":}
+
   # configuration settings
   #file { 'xlrelease default properties':
   #  ensure => present,
