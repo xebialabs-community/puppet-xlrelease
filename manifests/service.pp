@@ -16,5 +16,6 @@ class xlrelease::service {
     enable     => true,
     hasstatus  => true,
     hasrestart => true,
-  }
+  } ->
+  xlrelease_check_connection{'test':}
 }
