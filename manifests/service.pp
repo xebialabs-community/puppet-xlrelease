@@ -11,7 +11,7 @@ class xlrelease::service {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
-  service { $xlrelease::params::service_name:
+  service { 'xl-release':
     ensure     => running,
     enable     => true,
     hasstatus  => true,

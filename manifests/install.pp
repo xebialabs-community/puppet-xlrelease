@@ -8,6 +8,7 @@ class xlrelease::install {
   $xlr_licsource   = $xlrelease::xlr_licsource
   $install_type    = $xlrelease::install_type
   $install_java    = $xlrelease::install_java
+  $java_home       = $xlrelease::java_home
   $os_user         = $xlrelease::os_user
   $os_group        = $xlrelease::os_group
   $tmp_dir         = $xlrelease::tmp_dir
@@ -19,7 +20,7 @@ class xlrelease::install {
   -> anchor{'server_postinstall':}
   -> File['conf dir link', 'log dir link']
   -> File[$xlr_serverhome]
-#  -> File["/etc/init.d/${productname}"]
+  -> File["/etc/init.d/xl-release"]
   -> anchor{'install_end':}
 
 
@@ -115,8 +116,19 @@ class xlrelease::install {
     target => "${server_install_dir}/conf"
   }
 
+  ## put the init script in place
+  ## the template uses the following variables:
+  ## @os_user
+  ## @server_install_dir
+  file { "/etc/init.d/xl-release":
+    content => template("xlrelease/xl-release-initd-${::osfamily}.erb"),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0700'
+  }
 
-  # setup homedir
+
+# setup homedir
   file { $xlr_serverhome:
     ensure => link,
     target => $server_install_dir,
@@ -159,16 +171,6 @@ class xlrelease::install {
 
 
 
-## put the init script in place
-## the template uses the following variables:
-## @os_user
-## @server_install_dir
-#file { "/etc/init.d/${productname}":
-#  content => template("xldeploy/xldeploy-initd-${::osfamily}.erb"),
-#  owner   => 'root',
-#  group   => 'root',
-#  mode    => '0700'
-#}
 
 
 }
