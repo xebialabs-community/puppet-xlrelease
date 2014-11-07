@@ -24,4 +24,15 @@ class xlrelease::params {
   $install_java   = true
   $install_type   = 'puppetfiles'
   $puppetfiles_xlrelease_source  = undef
+
+  case $::osfamily {
+    'RedHat' : {
+      $java_home = '/usr/lib/jvm/jre-1.7.0-openjdk.x86_64'
+    }
+    'Debian' : {
+      $java_home = '/usr/lib/jvm/java-7-openjdk-amd64'
+    }
+    default  : { fail("operating system ${::operatingsystem} not supported") }
+  }
+
 }

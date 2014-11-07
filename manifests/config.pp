@@ -18,6 +18,7 @@ class xlrelease::config {
   $xlr_ssl                      = $xlrelease::xlr_ssl
   $install_type                 = $xlrelease::install_type
   $install_java                 = $xlrelease::install_java
+  $java_home                    = $xlrelease::java_home
   $os_user                      = $xlrelease::os_user
   $os_group                     = $xlrelease::os_group
   $tmp_dir                      = $xlrelease::tmp_dir

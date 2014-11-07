@@ -22,6 +22,7 @@ class xlrelease (
   $xlr_http_context_root        = $xlrelease::params::xlr_http_context_root,
   $xlr_importable_packages_path = $xlrelease::params::xlr_importable_packages_path,
   $xlr_ssl                      = $xlrelease::params::xlr_ssl,
+  $java_home                    = $xlrelease::params::java_home,
   $install_java                 = $xlrelease::params::install_java,
   $install_type                 = $xlrelease::params::install_type,
   $puppetfiles_xlrelease_source = $xlrelease::params::puppetfiles_xlrelease_source,
