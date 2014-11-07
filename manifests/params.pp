@@ -14,7 +14,7 @@ class xlrelease::params {
   $xlr_http_bind_address        = '0.0.0.0'
   $xlr_http_context_root        = '/'
   $xlr_importable_packages_path = 'importablePackages'
-  $xlr_ssl                      = 'false'
+  $xlr_ssl                      = false
 
 
 

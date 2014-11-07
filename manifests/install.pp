@@ -20,7 +20,7 @@ class xlrelease::install {
   -> anchor{'server_postinstall':}
   -> File['conf dir link', 'log dir link']
   -> File[$xlr_serverhome]
-  -> File["/etc/init.d/xl-release"]
+  -> File['/etc/init.d/xl-release']
   -> anchor{'install_end':}
 
 
@@ -106,13 +106,13 @@ class xlrelease::install {
 
   file { 'log dir link':
     ensure => link,
-    path   => "/var/log/xl-release",
+    path   => '/var/log/xl-release',
     target => "${server_install_dir}/log";
   }
 
   file { 'conf dir link':
     ensure => link,
-    path   => "/etc/xl-release",
+    path   => '/etc/xl-release',
     target => "${server_install_dir}/conf"
   }
 
@@ -120,7 +120,7 @@ class xlrelease::install {
   ## the template uses the following variables:
   ## @os_user
   ## @server_install_dir
-  file { "/etc/init.d/xl-release":
+  file { '/etc/init.d/xl-release':
     content => template("xlrelease/xl-release-initd-${::osfamily}.erb"),
     owner   => 'root',
     group   => 'root',
@@ -145,16 +145,16 @@ class xlrelease::install {
 
   case $xlr_licsource {
     /^http/ : {
-      File[$xlr_serverhome]
-
-      -> xldeploy_license_install{ $license_source:
-        owner                => $os_user,
-        group                => $os_group,
-        user                 => $download_user,
-        password             => $download_password,
-        destinationdirectory => "${server_home_dir}/conf"
-      }
-      -> Anchor['install_end']
+#      File[$xlr_serverhome]
+#
+#      -> xldeploy_license_install{ $xlr_licsource:
+#        owner                => $os_user,
+#        group                => $os_group,
+#        user                 => $download_user,
+#        password             => $download_password,
+#        destinationdirectory => "${server_home_dir}/conf"
+#      }
+#      -> Anchor['install_end']
     }
     /^puppet/ : {
       File[$xlr_serverhome]

@@ -34,7 +34,7 @@ class xlrelease::config {
   anchor{'config_start':}
   -> File['xlrelease default properties']
   -> Ini_setting['xlrelease.admin.password','xlrelease.http.port','xlrelease.jcr.repository.path','xlrelease.jcr.repository.path',
-                 'xlrelease.ssl','xlrelease.http.bind.address','xlrelease.http.context.root','xlrelease.importable.packages.path']
+                  'xlrelease.ssl','xlrelease.http.bind.address','xlrelease.http.context.root','xlrelease.importable.packages.path']
   -> Exec ['init xl-release']
   -> anchor{'config_end':}
 
@@ -48,16 +48,16 @@ class xlrelease::config {
   }
 
   Ini_setting {
-    path    => "${xlr_serverhome}/conf/deployit.conf",
+    path    => "${xlr_serverhome}/conf/xl-release-server.conf",
     ensure  => present,
     section => '',
   }
 
   # configuration settings
-  file { 'xlrelease default properties':
-    ensure => present,
-    path   => "${xlr_serverhome}/conf/deployit-defaults.properties",
-  }
+  #file { 'xlrelease default properties':
+  #  ensure => present,
+  #  path   => "${xlr_serverhome}/conf/deployit-defaults.properties",
+  #}
 
 
   ini_setting {
