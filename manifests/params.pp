@@ -4,10 +4,19 @@
 # It sets variables according to platform
 #
 class xlrelease::params {
-  $xlr_version    = '4.0.13'
-  $xlr_basedir    = '/opt/xl-release'
-  $xlr_serverhome = "/opt/xl-release/xl-release-server"
-  $xlr_licsource  = undef
+  $xlr_version                  = '4.0.13'
+  $xlr_basedir                  = '/opt/xl-release'
+  $xlr_serverhome               = '/opt/xl-release/xl-release-server'
+  $xlr_licsource                = undef
+  $xlr_repopath                 = 'repository'
+  $xlr_initrepo                 = true
+  $xlr_http_port                = '5516'
+  $xlr_http_bind_address        = '0.0.0.0'
+  $xlr_http_context_root        = '/'
+  $xlr_importable_packages_path = 'importablePackages'
+  $xlr_ssl                      = 'false'
+
+
 
   $os_user        = 'xl-release'
   $os_group       = 'xl-release'
