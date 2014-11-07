@@ -97,13 +97,12 @@ class xlrelease::config {
         user        => $os_user,
         environment => ["JAVA_HOME=${java_home}"]
       }
-    } else {
+  } else {
       exec { 'init xl-release':
         creates     => "${xlr_serverhome}/${xlr_repopath}",
         command     => "${xlr_serverhome}/bin/server.sh -setup -force -setup-defaults ${xlr_serverhome}/conf/deployit.conf",
         user        => $os_user,
         environment => ["JAVA_HOME=${java_home}"]
       }
-    }
   }
 }
