@@ -94,14 +94,14 @@ class xlrelease::config {
   if str2bool($xlr_initrepo) {
       exec { 'init xl-release':
         creates     => "${xlr_serverhome}/${xlr_repopath}",
-        command     => "${xlr_serverhome}/bin/server.sh -setup -reinitialize -force -setup-defaults ${xlr_serverhome}/conf/deployit.conf",
+        command     => "${xlr_serverhome}/bin/server.sh -setup -reinitialize -force -setup-defaults ${xlr_serverhome}/conf/xl-release-server.conf",
         user        => $os_user,
         environment => ["JAVA_HOME=${java_home}"]
       }
   } else {
       exec { 'init xl-release':
         creates     => "${xlr_serverhome}/${xlr_repopath}",
-        command     => "${xlr_serverhome}/bin/server.sh -setup -force -setup-defaults ${xlr_serverhome}/conf/deployit.conf",
+        command     => "${xlr_serverhome}/bin/server.sh -setup -force -setup-defaults ${xlr_serverhome}/conf/xl-release-server.conf",
         user        => $os_user,
         environment => ["JAVA_HOME=${java_home}"]
       }
