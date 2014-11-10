@@ -113,7 +113,7 @@ class xlrelease::install {
       group          => $os_group,
       user           => $xlr_download_user,
       password       => $xlr_download_password,
-      destinationdir => $base_dir,
+      destinationdir => $xlr_basedir,
       proxy_url      => $xlr_download_proxy_url
     }
 
