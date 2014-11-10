@@ -117,7 +117,7 @@ class xlrelease::install {
       proxy_url      => $xlr_download_proxy_url
     }
 
-    -> Anchor['server::postinstall']
+    -> Anchor['server_postinstall']
     }
   default       : { fail('unsupported installation type')
     }
