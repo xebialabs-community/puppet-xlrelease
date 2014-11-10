@@ -15,8 +15,9 @@ class xlrelease::params {
   $xlr_http_context_root        = '/'
   $xlr_importable_packages_path = 'importablePackages'
   $xlr_ssl                      = false
-
-
+  $xlr_download_user            = undef
+  $xlr_download_password        = undef
+  $xlr_download_proxy_url       = undef
 
   $os_user        = 'xl-release'
   $os_group       = 'xl-release'

@@ -2,10 +2,15 @@
 #
 class xlrelease::install {
 
-  $xlr_version     = $xlrelease::xlr_version
-  $xlr_basedir     = $xlrelease::xlr_basedir
-  $xlr_serverhome  = $xlrelease::xlr_serverhome
-  $xlr_licsource   = $xlrelease::xlr_licsource
+  $xlr_version             = $xlrelease::xlr_version
+  $xlr_basedir             = $xlrelease::xlr_basedir
+  $xlr_serverhome          = $xlrelease::xlr_serverhome
+  $xlr_licsource           = $xlrelease::xlr_licsource
+  $xlr_download_user       = $xlrelease::xlr_download_user
+  $xlr_download_password   = $xlrelease::xlr_download_password
+  $xlr_download_proxy_url  = $xlrelease::xlr_download_proxy_url
+  $xlr_download_server_url = $xlrelease::xlr_download_server_url
+
   $install_type    = $xlrelease::install_type
   $install_java    = $xlrelease::install_java
   $java_home       = $xlrelease::java_home
@@ -99,7 +104,21 @@ class xlrelease::install {
 
       -> Anchor['server_postinstall']
     }
+    'download'    : {
 
+    Anchor['server_install']
+
+    -> xlrelease_netinstall{ $xlr_download_server_url:
+      owner          => $os_user,
+      group          => $os_group,
+      user           => $xlr_download_user,
+      password       => $xlr_download_password,
+      destinationdir => $base_dir,
+      proxy_url      => $xlr_download_proxy_url
+    }
+
+    -> Anchor['server::postinstall']
+    }
   default       : { fail('unsupported installation type')
     }
   }
@@ -147,7 +166,7 @@ class xlrelease::install {
     /^http/ : {
 #      File[$xlr_serverhome]
 #
-#      -> xldeploy_license_install{ $xlr_licsource:
+#      -> xlrelease_license_install{ $xlr_licsource:
 #        owner                => $os_user,
 #        group                => $os_group,
 #        user                 => $download_user,

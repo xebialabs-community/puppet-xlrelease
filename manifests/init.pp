@@ -22,13 +22,26 @@ class xlrelease (
   $xlr_http_context_root        = $xlrelease::params::xlr_http_context_root,
   $xlr_importable_packages_path = $xlrelease::params::xlr_importable_packages_path,
   $xlr_ssl                      = $xlrelease::params::xlr_ssl,
+  $xlr_download_user            = $xlrelease::params::xlr_download_user,
+  $xlr_download_password        = $xlrelease::params::xlr_download_password,
+  $xlr_download_proxy_url       = $xlrelease::params::xlr_download_proxy_url,
   $java_home                    = $xlrelease::params::java_home,
   $install_java                 = $xlrelease::params::install_java,
   $install_type                 = $xlrelease::params::install_type,
   $puppetfiles_xlrelease_source = $xlrelease::params::puppetfiles_xlrelease_source,
+  $custom_download_server_url   = undef
+
 ) inherits xlrelease::params {
 
-  # validate parameters here
+
+  # compose some variables based on the input to the class
+  if ( $custom_download_server_url == undef ) {
+    $xlr_download_server_url = "https://tech.xebialabs.com/download/xl-release/${version}/xl-release-${version}-server.zip"
+  } else {
+    $xlr_download_server_url = $custom_download_server_url
+  }
+
+# validate parameters here
 
   anchor { 'xlrelease::begin': } ->
   class  { '::xlrelease::install': } ->
