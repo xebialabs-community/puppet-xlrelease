@@ -33,6 +33,7 @@ Puppet::Type.type(:xlrelease_check_connection).provide(:port_check) do
         while (Time.now - start_time) < timeout
           Puppet.notice("unable to reach #{resource[:host]}:#{resource[:port]} ")
           sleep 2
+          p port_open?(resource[:host], resource[:port])
           success = port_open?(resource[:host], resource[:port])
         end
       end
