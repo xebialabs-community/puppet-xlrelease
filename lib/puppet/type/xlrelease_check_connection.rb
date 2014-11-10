@@ -11,7 +11,7 @@ Puppet::Type.newtype(:xlrelease_check_connection) do
 
   newparam(:host) do
     desc 'the resolvable hostname of the server to be tested '
-    defautto 'localhost'
+    defaultto 'localhost'
   end
 
   newparam(:port) do
