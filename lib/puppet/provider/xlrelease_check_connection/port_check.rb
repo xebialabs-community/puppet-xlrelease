@@ -3,9 +3,12 @@ require 'timeout'
 
 def port_open?(ip, port)
   begin
+    p "testing"
     Timeout::timeout(1) do
       begin
+        p "#{ip} #{port}"
         s = TCPSocket.new(ip, port)
+        p s
         s.close
         return true
       rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
