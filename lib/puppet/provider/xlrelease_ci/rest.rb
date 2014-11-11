@@ -2,8 +2,6 @@ require_relative '../xlr_rest_provider.rb'
 
 Puppet::Type.type(:xlrelease_ci).provide :rest, :parent => Puppet::Provider::XLReleaseRestProvider do
 
-  confine :feature => :restclient
-
   has_feature :restclient
 
   def create
