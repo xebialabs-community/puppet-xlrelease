@@ -164,16 +164,16 @@ class xlrelease::install {
 
   case $xlr_licsource {
     /^http/ : {
-#      File[$xlr_serverhome]
-#
-#      -> xlrelease_license_install{ $xlr_licsource:
-#        owner                => $os_user,
-#        group                => $os_group,
-#        user                 => $download_user,
-#        password             => $download_password,
-#        destinationdirectory => "${server_home_dir}/conf"
-#      }
-#      -> Anchor['install_end']
+      File[$xlr_serverhome]
+
+      -> xlrelease_license_install{ $xlr_licsource:
+        owner                => $os_user,
+        group                => $os_group,
+        user                 => $xlr_download_user,
+        password             => $xlr_download_password,
+        destinationdirectory => "${xlr_serverhome}/conf"
+      }
+      -> Anchor['install_end']
     }
     /^puppet/ : {
       File[$xlr_serverhome]
@@ -185,7 +185,8 @@ class xlrelease::install {
       }
       -> Anchor['install_end']
     }
-    default : { fail('xlr_licsource unsupported')}
+    undef   : {}
+    default : { fail('xlr_licsource input unsupported')}
   }
 
 
