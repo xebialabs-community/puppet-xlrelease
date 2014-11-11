@@ -71,12 +71,14 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   end
 
   def to_json(id, type, properties)
+    p "to_json"
     json_hash = {"id" => id, "type" => type}.merge(properties)
     p json_hash
     return json_hash
   end
 
   def to_hash(json)
+    p "to hash"
     p JSON.parse(json)
     JSON.parse(json)
   end
