@@ -18,4 +18,13 @@ class xlrelease::service {
     hasrestart => true,
   } ->
   xlrelease_check_connection{'test':}
+  ->
+  xlrelease_ci{'Configuration/Deployit/xldeploy2':
+    ensure      => 'present',
+    type        => 'xlrelease.DeployitServerDefinition',
+    rest_url    => 'http://admin:admin01@localhost:5516/',
+    properties  => {  "url"      => "http://10.20.1.4:4516/deployit",
+                      "username" => "admin",
+                      "password" => "admin01" }
+  }
 }
