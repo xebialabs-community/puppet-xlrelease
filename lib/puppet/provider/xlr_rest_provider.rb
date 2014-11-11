@@ -63,6 +63,7 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
       raise Puppet::Error, "cannot send request to deployit server #{res.code}/#{res.message}:#{res.body}" unless res.is_a?(Net::HTTPSuccess)
       return res.body
     rescue Exception => e
+      p e.message
       return e.message
     end
 
