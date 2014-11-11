@@ -63,7 +63,7 @@ Puppet::Type.type(:xlrelease_ci).provide :rest, :parent => Puppet::Provider::XLR
 
   def resource_exists?(id)
     # check if a certain resource exists in the XL Deploy repository
-    json = rest_get "repository/exists/#{id}"
+    json = rest_get "repository/export/#{id}"
     return to_hash(json) == "true"
   end
 end
