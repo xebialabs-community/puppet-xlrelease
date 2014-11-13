@@ -1,6 +1,6 @@
 require 'pathname'
 
-Puppet::Type.newtype(:xlrelease_ci) do
+Puppet::Type.newtype(:xlrelease_xld_server) do
   @doc = 'Manage a XL Deploy Configuration Item'
 
   feature :restclient, 'Use REST to update XL Deploy repository'
