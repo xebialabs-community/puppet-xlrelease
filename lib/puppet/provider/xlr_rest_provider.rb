@@ -42,18 +42,15 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   end
 
   def ci_exists?(id)
-    begin
-      p "ci_exists"
-      output = rest_get("repository/export/#{id}")
-      p output
-      rest_get("repository/export/#{id}")
-      p " success "
-      return true
-    rescue Exception => e
-      p "fail"
-      p e.message
-      return false
-    end
+
+      output = rest_get("repository/tree/#{id}")
+      case output
+        when /'not found'/
+          return false
+        else
+          return true
+      end
+
   end
 
   def execute_rest(service, method, body='')
@@ -92,7 +89,7 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   end
 
   def to_hash(json)
-    
+
     JSON.parse(json)
   end
 
