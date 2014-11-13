@@ -44,8 +44,8 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   def ci_exists?(id)
     begin
       p "ci_exists"
-      p rest_get("repository/export/#{id}")
-
+      output = rest_get("repository/export/#{id}")
+      p output
       rest_get("repository/export/#{id}")
       p " success "
       return true
@@ -74,12 +74,10 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
     request.content_type = 'application/json'
 
     begin
-      p request
       res = http.request(request)
       raise Puppet::Error, "cannot send request to deployit server #{res.code}/#{res.message}:#{res.body}" unless res.is_a?(Net::HTTPSuccess)
       return res.body
     rescue Exception => e
-      p e.message
       return e.message
     end
 
@@ -87,15 +85,14 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
 
 
   def to_json(id, type, properties)
-    p "to_json"
+
     json_hash = {"id" => id, "type" => type}.merge(properties)
-    p json_hash
+
     return json_hash
   end
 
   def to_hash(json)
-    p "to hash"
-    p JSON.parse(json)
+    
     JSON.parse(json)
   end
 
