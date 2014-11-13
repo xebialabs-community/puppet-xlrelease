@@ -43,10 +43,14 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
 
   def ci_exists?(id)
     begin
+      p "ci_exists"
       p rest_get("repository/export/#{id}")
+
       rest_get("repository/export/#{id}")
+      p " success "
       return true
     rescue Exception => e
+      p "fail"
       p e.message
       return false
     end
