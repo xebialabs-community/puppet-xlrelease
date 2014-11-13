@@ -44,11 +44,13 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   def ci_exists?(id)
 
       output = rest_get("repository/tree/#{id}")
+      p output
       case output
-        when /'not found'/
+        when /not found/
           return false
         else
-          return true
+          p "return"
+        return true
       end
 
   end
