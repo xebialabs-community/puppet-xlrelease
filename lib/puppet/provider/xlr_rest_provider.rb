@@ -41,6 +41,16 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
     execute_rest(service, 'delete')
   end
 
+  def ci_exists?(id)
+    begin
+      rest_get("repository/export/#{id}")
+      return true
+    rescue Exception => e
+      p e.message
+      return false
+    end
+  end
+
   def execute_rest(service, method, body='')
 
     uri = URI.parse("#{resource[:rest_url]}/#{service}")
@@ -69,6 +79,7 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
     end
 
   end
+
 
   def to_json(id, type, properties)
     p "to_json"
