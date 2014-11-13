@@ -7,6 +7,7 @@ Puppet::Type.type(:xlrelease_xld_server).provide :rest, :parent => Puppet::Provi
   def create
 
     ci_json = to_json(resource[:id],resource[:type],resource[:properties])
+    p rest_post "/xldeploy/servers", ci_json
     rest_post "/xldeploy/servers", ci_json
 
   end
