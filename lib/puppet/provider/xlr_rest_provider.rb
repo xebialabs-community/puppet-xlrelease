@@ -30,6 +30,8 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   end
 
   def rest_post(service, body='')
+    p service
+    p body
     execute_rest(service, 'post', body)
   end
 
@@ -44,12 +46,12 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   def ci_exists?(id)
 
       output = rest_get("repository/tree/#{id}")
-      p output
+
       case output
         when /not found/
           return false
         else
-          p "return"
+
         return true
       end
 
