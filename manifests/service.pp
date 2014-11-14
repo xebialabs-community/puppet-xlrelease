@@ -23,12 +23,12 @@ class xlrelease::service {
     ensure      => 'present',
     type        => 'xlrelease.DeployitServerDefinition',
     rest_url    => 'http://admin:admin01@localhost:5516',
-    properties  => {  "url"      => "http://10.20.1.4:4516/deployit",
+    properties  => {  "url"      => "http://10.20.1.4:4516/deployit2",
                       "username" => "admin",
                       "password" => "admin01" }
   } ->
   xlrelease_xld_server{'Configuration/Deployit/xldeploy':
-    ensure      => 'present',
+    ensure      => 'absent',
     type        => 'xlrelease.DeployitServerDefinition',
     rest_url    => 'http://admin:admin01@localhost:5516',
     properties  => {  "url"      => "http://10.20.1.4:4516/deployit",
