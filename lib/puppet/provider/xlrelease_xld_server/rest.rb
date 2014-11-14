@@ -7,7 +7,7 @@ Puppet::Type.type(:xlrelease_xld_server).provide :rest, :parent => Puppet::Provi
   def create
     p "create"
     ci_json = to_j(resource[:id],resource[:type],resource[:properties])
-    rest_post "/deployit/servers", ci_json
+    rest_post "deployit/servers", ci_json
 
   end
 
