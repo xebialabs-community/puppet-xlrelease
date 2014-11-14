@@ -2,7 +2,7 @@ require 'puppet'
 require 'open-uri'
 require 'net/http'
 require 'json'
-
+require 'pp'
 class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
 
   # def rest_get(service)
@@ -73,6 +73,7 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
     request.content_type = 'application/json'
 
     begin
+      pp http.request(request)
       res = http.request(request)
       p res
       raise Puppet::Error, "cannot send request to deployit server #{res.code}/#{res.message}:#{res.body}" unless res.is_a?(Net::HTTPSuccess)
