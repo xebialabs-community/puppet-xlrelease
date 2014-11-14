@@ -30,8 +30,6 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   end
 
   def rest_post(service, body='')
-    p service
-    p body
     execute_rest(service, 'post', body)
   end
 
@@ -76,9 +74,8 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
 
     begin
       res = http.request(request)
-      raise Puppet::Error, "cannot send request to deployit server #{res.code}/#{res.message}:#{res.body}" unless res.is_a?(Net::HTTPSuccess)
-      p res.body
       p res
+      raise Puppet::Error, "cannot send request to deployit server #{res.code}/#{res.message}:#{res.body}" unless res.is_a?(Net::HTTPSuccess)
       return res.body
     rescue Exception => e
       return e.message
@@ -94,7 +91,6 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   end
 
   def to_hash(json)
-
     JSON.parse(json)
   end
 
