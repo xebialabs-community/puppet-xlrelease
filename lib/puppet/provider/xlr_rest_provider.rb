@@ -75,7 +75,7 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
     request.content_type = 'application/json'
 
     begin
-      
+
       res = http.request(request)
       p res
       raise Puppet::Error, "cannot send request to deployit server #{res.code}/#{res.message}:#{res.body}" unless res.is_a?(Net::HTTPSuccess)

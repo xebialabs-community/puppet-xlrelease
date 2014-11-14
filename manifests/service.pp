@@ -19,7 +19,7 @@ class xlrelease::service {
   } ->
   xlrelease_check_connection{'test':}
   ->
-  xlrelease_xld_server{'xldeploy2':
+  xlrelease_xld_server{'Configuration/Deployit/xldeploy2':
     ensure      => 'present',
     type        => 'xlrelease.DeployitServerDefinition',
     rest_url    => 'http://admin:admin01@localhost:5516',
@@ -27,7 +27,7 @@ class xlrelease::service {
                       "username" => "admin",
                       "password" => "admin01" }
   } ->
-  xlrelease_xld_server{'xldeploy':
+  xlrelease_xld_server{'Configuration/Deployit/xldeploy':
     ensure      => 'present',
     type        => 'xlrelease.DeployitServerDefinition',
     rest_url    => 'http://admin:admin01@localhost:5516',
