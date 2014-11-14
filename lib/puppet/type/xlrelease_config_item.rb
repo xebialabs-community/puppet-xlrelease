@@ -1,6 +1,6 @@
 require 'pathname'
 
-Puppet::Type.newtype(:xlrelease_xld_server) do
+Puppet::Type.newtype(:xlrelease_config_item) do
   @doc = 'Manage a XL Deploy Configuration Item'
 
   feature :restclient, 'Use REST to update XL Deploy repository'
@@ -15,22 +15,23 @@ Puppet::Type.newtype(:xlrelease_xld_server) do
   end
 
 
-  newparam(:id, :namevar => true) do
+
+
+  newparam(:title, :namevar => true) do
     desc 'The ID/path of the CI'
 
     # validate do |value|
     #  raise Puppet::Error, "Invalid id: #{value}" unless value =~ /^(Applications|Environments|Infrastructure|Configuration)\/.+$/
     # end
 
-
-    munge do |value|
-      "Configuration/Deployit/#{value}"
-    end
-
   end
 
   newparam(:type) do
     desc 'Type of the CI'
+
+     validate do |value|
+      raise Puppet::Error, "Invalid id: #{value}" unless value =~ /^(jenkins.Server|jira.Server)\/.+$/
+     end
   end
 
   newproperty(:properties) do

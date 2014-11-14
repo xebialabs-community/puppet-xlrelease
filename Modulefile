@@ -8,3 +8,5 @@ description   ''
 project_page  'https://github.com/WianVos/puppet-xlrelease'
 
 dependency 'puppetlabs/stdlib'
+dependency 'puppetlabs/concat'
+
