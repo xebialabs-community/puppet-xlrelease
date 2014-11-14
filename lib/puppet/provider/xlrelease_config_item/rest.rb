@@ -6,8 +6,8 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
 
 
   def self.instances
-    configurations_hash = rest_get "configurations"
-    xlrelease_config_items = configurations_hash.collect do |config_hash|
+    #configurations_hash = to_hash(rest_get("configurations"))
+    xlrelease_config_items = to_hash(rest_get("configurations")).collect do |config_hash|
       new( :type        => config_hash["type"],
            :title       => config_hash["title"],
            :properties  => config_hash["properties"],
