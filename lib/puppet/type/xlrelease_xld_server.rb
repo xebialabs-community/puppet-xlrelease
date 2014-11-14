@@ -51,6 +51,12 @@ Puppet::Type.newtype(:xlrelease_xld_server) do
     # validate do |value|
     #  raise Puppet::Error, "Invalid id: #{value}" unless value =~ /^(Applications|Environments|Infrastructure|Configuration)\/.+$/
     # end
+
+
+    munge do |value|
+      "Configuration/Deployit/#{value}"
+    end
+
   end
 
   newparam(:type) do
