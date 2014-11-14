@@ -58,14 +58,16 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   def execute_rest(service, method, body='')
 
     uri = URI.parse("#{resource[:rest_url]}/#{service}")
-
+    p uri
     http = Net::HTTP.new(uri.host, uri.port)
+    p http
     request = case method
                 when 'get'    then Net::HTTP::Get.new(uri.request_uri)
                 when 'post'   then Net::HTTP::Post.new(uri.request_uri)
                 when 'put'    then Net::HTTP::Put.new(uri.request_uri)
                 when 'delete' then Net::HTTP::Delete.new(uri.request_uri)
               end
+    p request
     #p request.pretty_print_inspect
 
     request.basic_auth(uri.user, uri.password) if uri.user and uri.password
@@ -73,7 +75,7 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
     request.content_type = 'application/json'
 
     begin
-      pp http.request(request)
+      
       res = http.request(request)
       p res
       raise Puppet::Error, "cannot send request to deployit server #{res.code}/#{res.message}:#{res.body}" unless res.is_a?(Net::HTTPSuccess)
