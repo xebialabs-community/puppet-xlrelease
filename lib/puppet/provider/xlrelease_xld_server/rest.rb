@@ -23,7 +23,7 @@ Puppet::Type.type(:xlrelease_xld_server).provide :rest, :parent => Puppet::Provi
 
   def properties
     p "properties"
-    ci_json = rest_get "deployit/servers/#{resource[:id]}"
+    ci_json = rest_get "repository/tree/#{resource[:id]}"
     ci_hash = to_hash(ci_json)
 
     # Add unmanaged k/v pairs that XL Deploy returns to our properties.
