@@ -32,7 +32,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
         :properties  => resource[:properties],
         :ensure      => :present,
         }.to_j
-    rest_post "configurations" property_json
+    rest_post "configurations", property_json
     @property_hash[:ensure] = :present
   end
 
@@ -75,7 +75,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
           :properties  => resource[:properties],
           :ensure      => :present,
       }
-    rest_put "configurations/#{@property_hash[:id]}" options.to_j
+    rest_put "configurations/#{@property_hash[:id]}", options.to_j
     end
   end
 
