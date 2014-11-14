@@ -48,9 +48,9 @@ Puppet::Type.newtype(:xlrelease_xld_server) do
   newparam(:id, :namevar => true) do
     desc 'The ID/path of the CI'
 
-    validate do |value|
-     raise Puppet::Error, "Invalid id: #{value}" unless value =~ /^(Applications|Environments|Infrastructure|Configuration)\/.+$/
-    end
+    # validate do |value|
+    #  raise Puppet::Error, "Invalid id: #{value}" unless value =~ /^(Applications|Environments|Infrastructure|Configuration)\/.+$/
+    # end
   end
 
   newparam(:type) do
