@@ -37,7 +37,7 @@ class xlrelease::service {
 #  }
   xlrelease_config_item{'jenkinst1':
     ensure => 'present',
-    type   => 'jenkins.server',
+    type   => 'jenkins.Server',
     rest_url => 'http://admin:admin01@localhost:5516'
   }
 }
