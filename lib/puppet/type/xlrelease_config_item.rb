@@ -29,9 +29,9 @@ Puppet::Type.newtype(:xlrelease_config_item) do
   newparam(:type) do
     desc 'Type of the CI'
 
-     validate do |value|
-      raise Puppet::Error, "Invalid id: #{value}" unless value =~ /^(jenkins.Server|jira.Server)\/.+$/
-     end
+     #validate do |value|
+     #raise Puppet::Error, "Invalid id: #{value}" unless value =~ /^(jenkins.Server|jira.Server)\/.+$/
+     #end
   end
 
   newproperty(:properties) do
