@@ -29,8 +29,8 @@ class xlrelease (
   $install_java                 = $xlrelease::params::install_java,
   $install_type                 = $xlrelease::params::install_type,
   $puppetfiles_xlrelease_source = $xlrelease::params::puppetfiles_xlrelease_source,
-  $custom_download_server_url   = undef
-
+  $custom_download_server_url   = undef,
+  $xldeploy_server_hash         = {}
 ) inherits xlrelease::params {
 
 

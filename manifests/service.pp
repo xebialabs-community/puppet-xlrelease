@@ -17,7 +17,7 @@ class xlrelease::service {
     hasstatus  => true,
     hasrestart => true,
   } ->
-  xlrelease_check_connection{'test':}
+  xlrelease_check_connection{'default':}
   ->
 #  xlrelease_xld_server{'xldeploy2':
 #    ensure      => 'present',
@@ -35,9 +35,9 @@ class xlrelease::service {
 #                      "username" => "admin",
 #                      "password" => "admin01" }
 #  }
-  xlrelease_config_item{'jenkinst1':
-    ensure => 'present',
-    type   => 'jenkins.Server',
-    rest_url => 'http://admin:admin01@localhost:5516'
-  }
+#  xlrelease_config_item{'jenkinst1':
+#    ensure => 'present',
+#    type   => 'jenkins.Server',
+#    rest_url => 'http://admin:admin01@localhost:5516'
+#  }
 }
