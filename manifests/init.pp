@@ -47,5 +47,6 @@ class xlrelease (
   class  { '::xlrelease::install': } ->
   class  { '::xlrelease::config': } ~>
   class  { '::xlrelease::service': } ->
+  class  { '::xlrelease::postconfig':} ->
   anchor { 'xlrelease::end': }
 }
