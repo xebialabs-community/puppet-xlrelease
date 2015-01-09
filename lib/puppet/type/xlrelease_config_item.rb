@@ -82,4 +82,5 @@ Puppet::Type.newtype(:xlrelease_config_item) do
     desc 'The rest url for making changes to XL Deploy'
   end
 
+
 end

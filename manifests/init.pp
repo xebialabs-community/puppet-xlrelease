@@ -36,7 +36,7 @@ class xlrelease (
 
   # compose some variables based on the input to the class
   if ( $custom_download_server_url == undef ) {
-    $xlr_download_server_url = "https://tech.xebialabs.com/download/xl-release/${xlr_version}/xl-release-${xlr_version}-server.zip"
+    $xlr_download_server_url = "https://dist.xebialabs.com/xl-release/${xlr_version}/xl-release-${xlr_version}-server.zip"
   } else {
     $xlr_download_server_url = $custom_download_server_url
   }
