@@ -21,7 +21,7 @@ class xlrelease::service {
   xlrelease_check_connection{'default':
     port => $xlr_port_number
   }
-  
+
 #  xlrelease_xld_server{'xldeploy2':
 #    ensure      => 'present',
 #    type        => 'xlrelease.DeployitServerDefinition',

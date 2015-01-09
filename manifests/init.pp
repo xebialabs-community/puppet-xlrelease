@@ -53,6 +53,7 @@ class xlrelease (
   }
 
   if $xlr_http_context_root == '/' {
+
     $rest_url = "${rest_protocol}${xlr_rest_user}:${xlr-rest_password}@${xlr_http_bind_address}:${xlr_http_port}/"
   } else {
     if $http_context_root =~ /^\// {
