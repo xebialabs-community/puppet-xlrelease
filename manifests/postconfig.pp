@@ -1,4 +1,4 @@
-class xlrelease::postconfig{
+class xlrelease::postconfig {
 
   $xlr_xldeploy_hash  = $xlrelease::xlr_xldeploy_hash
   $rest_url           = $xlrelease::rest_url
