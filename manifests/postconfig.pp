@@ -8,6 +8,6 @@ class xlrelease::postconfig{
   }
 
   # config stuff in xldeploy
-  create_resources(xlrelease_xld_server, $xldeploy_server_hash, $defaults)
+  create_resources(xlrelease_xld_server, $xlr_xldeploy_hash, $defaults)
 
 }
