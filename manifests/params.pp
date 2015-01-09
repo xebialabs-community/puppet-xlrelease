@@ -19,7 +19,8 @@ class xlrelease::params {
   $xlr_download_password        = undef
   $xlr_download_proxy_url       = undef
   $xlr_rest_user                = 'admin'
-  $xlr_rest_password            = ''
+  $xlr_rest_password            = 'xebialabs'
+  $xlr_admin_password           = 'xebialabs'
 
   $os_user        = 'xl-release'
   $os_group       = 'xl-release'
