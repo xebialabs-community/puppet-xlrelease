@@ -38,9 +38,10 @@ class xlrelease::service {
 #                      "username" => "admin",
 #                      "password" => "admin01" }
 #  }
-#  xlrelease_config_item{'jenkinst1':
-#    ensure => 'present',
-#    type   => 'jenkins.Server',
-#    rest_url => 'http://admin:admin01@localhost:5516'
-#  }
+  xlrelease_config_item{'jenkinst1':
+    ensure => 'present',
+    type   => 'jenkins.Server',
+    rest_url => 'http://admin:admin01@localhost:5516',
+
+  }
 }
