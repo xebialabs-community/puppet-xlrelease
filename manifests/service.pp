@@ -4,7 +4,8 @@
 # It ensure the service is running
 #
 class xlrelease::service {
-  include xlrelease::params
+
+  $xlr_port_number = $xlrelease::xlr_port_number
 
   # Make this a private class
   if $caller_module_name != $module_name {
@@ -17,8 +18,10 @@ class xlrelease::service {
     hasstatus  => true,
     hasrestart => true,
   } ->
-  xlrelease_check_connection{'default':}
-  ->
+  xlrelease_check_connection{'default':
+    port => $xlr_port_number
+  }
+  
 #  xlrelease_xld_server{'xldeploy2':
 #    ensure      => 'present',
 #    type        => 'xlrelease.DeployitServerDefinition',

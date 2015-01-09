@@ -25,12 +25,15 @@ class xlrelease (
   $xlr_download_user            = $xlrelease::params::xlr_download_user,
   $xlr_download_password        = $xlrelease::params::xlr_download_password,
   $xlr_download_proxy_url       = $xlrelease::params::xlr_download_proxy_url,
+  $xlr_rest_user                = $xlrelease::params::xlr_rest_user,
+  $xlr_rest_password            = $xlrelease::params::xlr_rest_password,
+  $xlr_admin_password           = $xlrelease::params::xlr_admin_password,
   $java_home                    = $xlrelease::params::java_home,
   $install_java                 = $xlrelease::params::install_java,
   $install_type                 = $xlrelease::params::install_type,
   $puppetfiles_xlrelease_source = $xlrelease::params::puppetfiles_xlrelease_source,
   $custom_download_server_url   = undef,
-  $xldeploy_server_hash         = {}
+  $xlr_xldeploy_hash            = {}
 ) inherits xlrelease::params {
 
 
@@ -41,6 +44,23 @@ class xlrelease (
     $xlr_download_server_url = $custom_download_server_url
   }
 
+
+  if str2bool($::xlr_ssl) {
+    $rest_protocol = 'https://'
+    # Check certificate validation
+  } else {
+    $rest_protocol = 'http://'
+  }
+
+  if $xlr_http_context_root == '/' {
+    $rest_url = "${rest_protocol}${xlr_rest_user}:${xlr-rest_password}@${xlr_http_bind_address}:${xlr_http_port}/"
+  } else {
+    if $http_context_root =~ /^\// {
+      $rest_url = "${rest_protocol}${xlr_rest_user}:${xlr_rest_password}@${xlr_http_bind_address}:${xlr_http_port}${xlr_http_context_root}"
+    } else {
+      $rest_url = "${rest_protocol}${xlr_rest_user}:${xlr_rest_password}@${xlr_http_bind_address}:${xlr_http_port}/${xlr_http_context_root}"
+    }
+  }
 # validate parameters here
 
   anchor { 'xlrelease::begin': } ->

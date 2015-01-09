@@ -16,6 +16,7 @@ class xlrelease::config {
   $xlr_http_context_root        = $xlrelease::xlr_http_context_root
   $xlr_importable_packages_path = $xlrelease::xlr_importable_packages_path
   $xlr_ssl                      = $xlrelease::xlr_ssl
+  $xlr_admin_password           = $xlrelease::xlr_admin_password
   $install_type                 = $xlrelease::install_type
   $install_java                 = $xlrelease::install_java
   $java_home                    = $xlrelease::java_home
@@ -66,7 +67,7 @@ class xlrelease::config {
   ini_setting {
     'xlrelease.admin.password':
     setting => 'admin.password',
-    value   => 'admin01';
+    value   => $xlr_admin_password;
   
     'xlrelease.http.port':
     setting => 'http.port',
