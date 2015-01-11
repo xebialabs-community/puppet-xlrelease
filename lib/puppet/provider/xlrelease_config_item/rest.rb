@@ -1,5 +1,6 @@
 require_relative '../xlr_rest_provider.rb'
 require 'json'
+require 'pp'
 Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Provider::XLReleaseRestProvider do
 
   has_feature :restclient
@@ -28,6 +29,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
 
   def create
     ci_json = to_j(resource[:title],resource[:type],resource[:properties])
+    pp ci_json
     rest_post "configurations", ci_json
   end
 
