@@ -95,8 +95,8 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
     p config.class
     unless config.empty?
       p "config select"
-      p config.select { |x| x[:title] == title }
-      config_return =  config.select { |x| x[:title] == title }
+      p config.select { |x| x["title"] == title }
+      config_return =  config.select { |x| x["title"] == title }
       return {} if config_return.empty?
     end
     return {}
