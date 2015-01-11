@@ -41,7 +41,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   def exists?
    p "exists"
    p get_config_item(resource[:title])
-   return false if get_config_item(resource[:title]) ==
+   return false if get_config_item(resource[:title]) == {}
    return true
   end
 
