@@ -35,6 +35,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   end
 
   def exists?
+   p get_config_item(resource[:title])
    return false if get_config_item(resource[:title]).nil?
    return true
   end
@@ -75,8 +76,6 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   # end
   private
   def get_config
-    p "get_config"
-    p rest_get("configurations")
     to_hash(rest_get("configurations")).collect do |config_hash|
       new( :type        => config_hash["type"],
            :title       => config_hash["title"],
@@ -87,8 +86,6 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   end
 
   def get_config_item(title)
-    p "get_config_item"
-    p get_config.select { |x| x[:title] == title }
     config = get_config
     return config.select { |x| x[:title] == title } unless config == []
     return {}
