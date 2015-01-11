@@ -50,6 +50,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   end
 
   def properties
+
     p get_config_item(resource[:title])
     get_config_item(resource[:title])[:properties]
   end
@@ -81,7 +82,10 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   end
 
   def get_config_item(title)
+
     config = get_config
+    p "get config item"
+    p config
     return config.select { |x| x[:title] == title } unless config == []
     return {}
   end
