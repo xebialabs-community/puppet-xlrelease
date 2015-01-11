@@ -80,6 +80,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
            :title       => config_hash["title"],
            :properties  => config_hash["properties"],
            :id          => config_hash["id"]
+      )
       end
   end
 
@@ -95,7 +96,9 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
       :ensure      => :present,
     }.to_j
   end
+
   def configuration_id
     get_config_item(resource[:title])[:id]
   end
+
 end
