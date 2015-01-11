@@ -33,7 +33,8 @@ class xlrelease (
   $install_type                 = $xlrelease::params::install_type,
   $puppetfiles_xlrelease_source = $xlrelease::params::puppetfiles_xlrelease_source,
   $custom_download_server_url   = undef,
-  $xlr_xldeploy_hash            = {}
+  $xlr_xldeploy_hash            = {},
+  $xlr_config_item_hash         = {}
 ) inherits xlrelease::params {
 
 

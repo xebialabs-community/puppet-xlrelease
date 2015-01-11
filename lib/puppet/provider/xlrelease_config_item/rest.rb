@@ -31,7 +31,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   end
 
   def destroy
-    rest_delete "configurations/#{configuration_id)[:id]}"
+    rest_delete "configurations/#{configuration_id}"
   end
 
   def exists?

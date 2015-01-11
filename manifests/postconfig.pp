@@ -1,7 +1,8 @@
 class xlrelease::postconfig {
 
-  $xlr_xldeploy_hash  = $xlrelease::xlr_xldeploy_hash
-  $rest_url           = $xlrelease::rest_url
+  $xlr_xldeploy_hash     = $xlrelease::xlr_xldeploy_hash
+  $xlr_config_item_hash  = $xlrelease::xlr_config_item_hash
+  $rest_url              = $xlrelease::rest_url
 
 
   $defaults = { rest_url => $rest_url,
@@ -11,5 +12,6 @@ class xlrelease::postconfig {
 
   # config stuff in xldeploy
   create_resources(xlrelease_xld_server, $xlr_xldeploy_hash, $defaults)
+  create_resources(xlrelease_config_item, $xlr_config_item_hash, $defaults)
 
 }
