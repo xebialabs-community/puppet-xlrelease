@@ -41,7 +41,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   def exists?
    p "exists"
    p get_config_item(resource[:title])
-   return false if get_config_item(resource[:title]) == {}
+   return false if get_config_item(resource[:title]) ==
    return true
   end
 
@@ -98,6 +98,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
       p config.select { |x| x["title"] == title }
       config_return =  config.select { |x| x["title"] == title }
       return {} if config_return.empty?
+      return config_return.first
     end
     return {}
   end
