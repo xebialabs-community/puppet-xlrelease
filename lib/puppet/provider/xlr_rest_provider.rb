@@ -36,9 +36,7 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   end
 
   def execute_rest(service, method, body='')
-    p service
-    p method
-    p body
+   
 
     uri = URI.parse("#{resource[:rest_url]}/#{service}")
     http = Net::HTTP.new(uri.host, uri.port)
@@ -50,9 +48,7 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
               end
 
     #p request.pretty_print_inspect
-    p "debug"
-    p uri.user
-    p uri.password
+
     request.basic_auth(uri.user, uri.password) if uri.user and uri.password
     request.body = body unless body == ''
     request.content_type = 'application/json'
