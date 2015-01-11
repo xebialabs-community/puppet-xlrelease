@@ -100,7 +100,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
       :title       => resource[:title],
       :properties  => resource[:properties],
       :ensure      => :present,
-    }.to_j
+    }.to_json
   end
 
   def configuration_id
