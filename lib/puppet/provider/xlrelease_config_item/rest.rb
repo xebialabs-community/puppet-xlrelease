@@ -75,6 +75,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   # end
   private
   def get_config
+    p "get_config"
     to_hash(rest_get("configurations")).collect do |config_hash|
       new( :type        => config_hash["type"],
            :title       => config_hash["title"],
@@ -85,7 +86,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   end
 
   def get_config_item(title)
-
+    p "get_config_item"
     p get_config.select { |x| x[:title] == title }
     get_config.select { |x| x[:title] == title }
   end
