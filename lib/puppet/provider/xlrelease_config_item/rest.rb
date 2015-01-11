@@ -1,5 +1,5 @@
 require_relative '../xlr_rest_provider.rb'
-
+require 'json'
 Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Provider::XLReleaseRestProvider do
 
   has_feature :restclient
