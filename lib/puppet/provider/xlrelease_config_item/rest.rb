@@ -90,6 +90,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   def get_config_item(title)
 
     config = get_config
+    p config
     p "before config select"
     p config.class
     unless config.empty?
