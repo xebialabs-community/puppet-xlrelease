@@ -87,7 +87,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
     config = get_config
     p "get config item"
     p config
-    if config == Array.empty?
+    if config == []
       return config.select { |x| x[:title] == title }
     end
     return {}
