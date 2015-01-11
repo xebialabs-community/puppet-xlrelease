@@ -84,7 +84,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   end
 
   def get_config_item(title)
-    get_config.select { |x| x[:title] == title)
+    get_config.select { |x| x[:title] == title }
   end
 
   def property_json
