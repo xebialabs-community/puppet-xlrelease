@@ -87,7 +87,8 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   def get_config_item(title)
 
     config = get_config
-
+    p "before config select"
+    p config
     if config == []
       p "config select"
       p config.select { |x| x[:title] == title }
