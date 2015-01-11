@@ -36,8 +36,6 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   end
 
   def execute_rest(service, method, body='')
-   
-
     uri = URI.parse("#{resource[:rest_url]}/#{service}")
     http = Net::HTTP.new(uri.host, uri.port)
     request = case method
@@ -54,11 +52,9 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
     request.content_type = 'application/json'
 
     begin
-      p request.body
       res = http.request(request)
 
       raise Puppet::Error, "cannot send request to deployit server #{res.code}/#{res.message}:#{res.body}" unless res.is_a?(Net::HTTPSuccess)
-      p res.body
       return res.body
     rescue Exception => e
       return e.message
