@@ -76,6 +76,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   private
   def get_config
     p "get_config"
+    p rest_get("configurations")
     to_hash(rest_get("configurations")).collect do |config_hash|
       new( :type        => config_hash["type"],
            :title       => config_hash["title"],
@@ -88,7 +89,9 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   def get_config_item(title)
     p "get_config_item"
     p get_config.select { |x| x[:title] == title }
-    get_config.select { |x| x[:title] == title }
+    config = get_config
+    unless config == [] return config.select { |x| x[:title] == title }
+    return {}
   end
 
   def property_json
@@ -101,7 +104,9 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   end
 
   def configuration_id
-    get_config_item(resource[:title])[:id]
+    config_item = get_config_item(resource[:title])
+    return nil if config_item == {}
+    config_item[:id]
   end
 
 end
