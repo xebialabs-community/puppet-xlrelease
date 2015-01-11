@@ -79,6 +79,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   # end
   private
   def get_config
+    p to_hash(rest_get("configurations"))
     to_hash(rest_get("configurations")).collect do |config_hash|
       new( :type        => config_hash["type"],
            :title       => config_hash["title"],
