@@ -115,7 +115,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   def configuration_id
     config_item = get_config_item(resource[:title])
     return nil if config_item == {}
-    config_item[:id]
+    config_item["id"]
   end
 
 end
