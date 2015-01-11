@@ -47,7 +47,9 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
               end
 
     #p request.pretty_print_inspect
-
+    p "debug"
+    p uri.user
+    p uri.password
     request.basic_auth(uri.user, uri.password) if uri.user and uri.password
     request.body = body unless body == ''
     request.content_type = 'application/json'
