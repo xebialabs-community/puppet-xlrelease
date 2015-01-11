@@ -36,6 +36,7 @@ class Puppet::Provider::XLReleaseRestProvider < Puppet::Provider
   end
 
   def execute_rest(service, method, body='')
+    p body
     uri = URI.parse("#{resource[:rest_url]}/#{service}")
     http = Net::HTTP.new(uri.host, uri.port)
     request = case method
