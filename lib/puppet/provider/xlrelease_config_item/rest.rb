@@ -108,7 +108,6 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
       :type        => resource[:type],
       :title       => resource[:title],
       :properties  => resource[:properties],
-      :ensure      => :present,
     }.to_json
   end
 
