@@ -50,7 +50,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   end
 
   def properties
-
+    p "props"
     p get_config_item(resource[:title])
     get_config_item(resource[:title])[:properties]
   end
