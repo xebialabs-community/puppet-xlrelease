@@ -27,7 +27,8 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   # end
 
   def create
-    rest_post "configurations", property_json
+    ci_json = to_j(resource[:id],resource[:type],resource[:properties])
+    rest_post "configurations", ci_json
   end
 
   def destroy
