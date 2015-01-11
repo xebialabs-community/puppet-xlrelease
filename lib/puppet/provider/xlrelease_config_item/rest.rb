@@ -28,7 +28,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   # end
 
   def create
-    ci_json = {"title" => resource[:title], "type" => resource[:type], properties => resource[:properties] }.to_json
+    ci_json = {"title" => resource[:title], "type" => resource[:type], "properties" => resource[:properties] }.to_json
     pp ci_json
 
     rest_post "configurations", ci_json
