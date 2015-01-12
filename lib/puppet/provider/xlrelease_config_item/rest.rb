@@ -6,31 +6,8 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   has_feature :restclient
 
 
-  # def self.instances
-  #   #configurations_hash = to_hash(rest_get("configurations"))
-  #   xlrelease_config_items = to_hash(rest_get("configurations")).collect do |config_hash|
-  #     new( :type        => config_hash["type"],
-  #          :title       => config_hash["title"],
-  #          :properties  => config_hash["properties"],
-  #          :ensure      => :present,
-  #          :id          => config_hash["id"]
-  #     )
-  #   end
-  # end
-  #
-  # def self.prefetch(resources)
-  #   xlrelease_config_items = instances
-  #   resources.keys.each do |title|
-  #     if provider = xlrelease_config_items.find{ |cfi| cfi.title == title }
-  #       resources[name].provider = provider
-  #     end
-  #   end
-  # end
 
   def create
-    # ci_json = {"title" => resource[:title], "type" => resource[:type], "properties" => resource[:properties] }.to_json
-    # pp ci_json
-
     rest_post "configurations", property_json
   end
 
@@ -39,8 +16,6 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   end
 
   def exists?
-   p "exists"
-   p get_config_item(resource[:title])
    return false if get_config_item(resource[:title]) == {}
    return true
   end
@@ -50,14 +25,10 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   end
 
   def type=(value)
-
     rest_put "configurations/#{configuration_id}", property_json
   end
 
   def properties
-    p "props"
-    p get_config_item(resource[:title])
-    p get_config_item(resource[:title])
     get_config_item(resource[:title])["properties"]
   end
 
@@ -74,12 +45,8 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   def get_config_item(title)
 
     config = get_config
-    p config
-    p "before config select"
-    p config.class
+
     unless config.empty?
-      p "config select"
-      p config.select { |x| x["title"] == title }
       config_return =  config.select { |x| x["title"] == title }
       return {} if config_return.empty?
       return config_return.first
