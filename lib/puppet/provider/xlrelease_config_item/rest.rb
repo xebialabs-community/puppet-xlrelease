@@ -28,10 +28,10 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   # end
 
   def create
-    ci_json = {"title" => resource[:title], "type" => resource[:type], "properties" => resource[:properties] }.to_json
-    pp ci_json
+    # ci_json = {"title" => resource[:title], "type" => resource[:type], "properties" => resource[:properties] }.to_json
+    # pp ci_json
 
-    rest_post "configurations", ci_json
+    rest_post "configurations", property_json
   end
 
   def destroy
@@ -65,23 +65,7 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
     rest_put "configurations/#{configuration_id}", property_json
   end
 
-  # def initialize(value={})
-  #   super(value)
-  #   @property_flush = {}
-  # end
-  #
-  # def flush
-  #   options {}
-  #   if @property_flush
-  #     options = {
-  #         :type        => resource[:type],
-  #         :title       => resource[:title],
-  #         :properties  => resource[:properties],
-  #         :ensure      => :present,
-  #     }
-  #   rest_put "configurations/#{@property_hash[:id]}", options.to_j
-  #   end
-  # end
+
   private
   def get_config
     to_hash(rest_get("configurations"))
