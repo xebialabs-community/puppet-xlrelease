@@ -32,12 +32,12 @@ class xlrelease::config {
 
 
   #flow controll
-  anchor{'config_start':}
+  anchor{'xlr config_start':}
   #-> File['xlrelease default properties']
   -> Ini_setting['xlrelease.admin.password','xlrelease.http.port','xlrelease.jcr.repository.path','xlrelease.jcr.repository.path',
                   'xlrelease.ssl','xlrelease.http.bind.address','xlrelease.http.context.root','xlrelease.importable.packages.path']
   -> Exec ['init xl-release']
-  -> anchor{'config_end':}
+  -> anchor{'xlr config_end':}
 
   # resource defaults
   File {

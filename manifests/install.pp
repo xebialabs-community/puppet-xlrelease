@@ -20,13 +20,13 @@ class xlrelease::install {
   $puppetfiles_xlrelease_source = $xlrelease::puppetfiles_xlrelease_source
 
   #flow controll
-  anchor{'install':}
-  -> anchor{'server_install':}
-  -> anchor{'server_postinstall':}
-  -> File['conf dir link', 'log dir link']
+  anchor{'xlr install':}
+  -> anchor{'xlr server_install':}
+  -> anchor{'xlr server_postinstall':}
+  -> File['xlr conf dir link', 'xlr log dir link']
   -> File[$xlr_serverhome]
   -> File['/etc/init.d/xl-release']
-  -> anchor{'install_end':}
+  -> anchor{'xlr install_end':}
 
 
   #figure out the server install dir
@@ -89,24 +89,24 @@ class xlrelease::install {
 
       $server_zipfile = "xl-release-${xlr_version}-server.zip"
 
-      Anchor['server_install']
+      Anchor['xlr server_install']
 
       -> file { "${tmp_dir}/${server_zipfile}": source => "${puppetfiles_xlrelease_source}/${server_zipfile}" }
 
       -> file { $server_install_dir: ensure => directory, owner => $os_user, group => $os_group }
 
-      -> exec { 'unpack server file':
+      -> exec { 'xlr unpack server file':
         command => "/usr/bin/unzip ${tmp_dir}/${server_zipfile};/bin/cp -rp ${tmp_dir}/xl-release-${xlr_version}-server/* ${server_install_dir}",
         creates => "${server_install_dir}/bin",
         cwd     => $tmp_dir,
         user    => $os_user
       }
 
-      -> Anchor['server_postinstall']
+      -> Anchor['xlr server_postinstall']
     }
     'download'    : {
 
-    Anchor['server_install']
+    Anchor['xlr server_install']
 
     -> xlrelease_netinstall{ $xlr_download_server_url:
       owner          => $os_user,
@@ -117,19 +117,19 @@ class xlrelease::install {
       proxy_url      => $xlr_download_proxy_url
     }
 
-    -> Anchor['server_postinstall']
+    -> Anchor['xlr server_postinstall']
     }
   default       : { fail('unsupported installation type')
     }
   }
 
-  file { 'log dir link':
+  file { 'xlr log dir link':
     ensure => link,
     path   => '/var/log/xl-release',
     target => "${server_install_dir}/log";
   }
 
-  file { 'conf dir link':
+  file { 'xlr conf dir link':
     ensure => link,
     path   => '/etc/xl-release',
     target => "${server_install_dir}/conf"
@@ -173,7 +173,7 @@ class xlrelease::install {
         password             => $xlr_download_password,
         destinationdirectory => "${xlr_serverhome}/conf"
       }
-      -> Anchor['install_end']
+      -> Anchor['xlr install_end']
     }
     /^puppet/ : {
       File[$xlr_serverhome]
@@ -183,7 +183,7 @@ class xlrelease::install {
         group  => $os_group,
         source => $xlr_licsource,
       }
-      -> Anchor['install_end']
+      -> Anchor['xlr install_end']
     }
     undef   : {}
     default : { fail('xlr_licsource input unsupported')}
