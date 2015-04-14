@@ -1,0 +1,16 @@
+{
+  "name": "puppet-xlrelease",
+  "version": "1.0.0",
+  "author": "xebialabs",
+  "summary": "Puppet module for xlrelease",
+  "license": "Apache V2.0",
+  "source": "https://github.com/xebialabs/puppet-xlrelease.git",
+  "project_page": "https://github.com/xebialabs/puppet-xlrelease.git",
+  "issues_url": "https://github.com/xebialabs/puppet-xlrelease/issues",
+  "description": "This module can be used to install and configure a xlrelease infrastructure",
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">= 4.1.0"},
+    {"name":"puppetlabs/inifile","version_requirement":">= 1.0.0"},
+    {"name":"puppetlabs/concat","version_requirement":">= 1.1.0"}
+  ]
+}
