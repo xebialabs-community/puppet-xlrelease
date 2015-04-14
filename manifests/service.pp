@@ -5,7 +5,7 @@
 #
 class xlrelease::service {
 
-  $xlr_port_number = $xlrelease::xlr_port_number
+  $xlr_http_port = $xlrelease::xlr_http_port
 
   # Make this a private class
   if $caller_module_name != $module_name {
@@ -19,7 +19,7 @@ class xlrelease::service {
     hasrestart => true,
   } ->
   xlrelease_check_connection{'default':
-    port => $xlr_port_number
+    port => $xlr_http_port
   }
 
 }

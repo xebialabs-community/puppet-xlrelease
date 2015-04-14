@@ -24,7 +24,7 @@ class xlrelease::config {
   $os_group                     = $xlrelease::os_group
   $tmp_dir                      = $xlrelease::tmp_dir
   $puppetfiles_xlrelease_source = $xlrelease::puppetfiles_xlrelease_source
-  
+
   # Make this a private class
   if $caller_module_name != $module_name {
     fail("Use of private class ${name} by ${caller_module_name}")
@@ -68,27 +68,27 @@ class xlrelease::config {
     'xlrelease.admin.password':
     setting => 'admin.password',
     value   => $xlr_admin_password;
-  
+
     'xlrelease.http.port':
     setting => 'http.port',
     value   => $xlr_http_port;
-  
+
     'xlrelease.jcr.repository.path':
     setting => 'jcr.repository.path',
     value   => regsubst($xlr_repopath, '^/', 'file:///');
-  
+
     'xlrelease.ssl':
     setting => 'ssl',
     value   => $xlr_ssl;
-  
+
     'xlrelease.http.bind.address':
     setting => 'http.bind.address',
     value   => $xlr_http_bind_address;
-  
+
     'xlrelease.http.context.root':
     setting => 'http.context.root',
     value   => $xlr_http_context_root;
-  
+
     'xlrelease.importable.packages.path':
     setting => 'importable.packages.path',
     value   => $xlr_importable_packages_path;

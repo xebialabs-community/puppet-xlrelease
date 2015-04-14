@@ -108,17 +108,17 @@
 #                   url: 'http://your_jenkins_host_goes_here:and_the_port_here'
 #                 }
 #   }
-
-**adding a git repo to the configuration**
-
-xlrelease_config_item{'your_git_repo':
-type => 'git.Repository',
-properties => { username: "git user name"
-title: "title in xlr"
-password: "git user password"
-url: 'http://url.to.git/repo'
-}
-}
+#
+# === adding a git repo to the configuration**
+#
+#   xlrelease_config_item{'your_git_repo':
+#     type => 'git.Repository',
+#     properties => { username: "git user name",
+#                     title: "title in xlr",
+#                     password: "git user password",
+#                     url: 'http://url.to.git/repo'
+#                   }
+#   }
 class xlrelease (
   $os_user                      = $xlrelease::params::os_user,
   $os_group                     = $xlrelease::params::os_group,
@@ -168,7 +168,7 @@ class xlrelease (
   if ($xlr_http_context_root == '/') {
     $rest_url = "${rest_protocol}${xlr_rest_user}:${xlr_rest_password}@${xlr_http_bind_address}:${xlr_http_port}"
   } else {
-    if $http_context_root =~ /^\// {
+    if $xlr_http_context_root =~ /^\// {
       $rest_url = "${rest_protocol}${xlr_rest_user}:${xlr_rest_password}@${xlr_http_bind_address}:${xlr_http_port}${xlr_http_context_root}"
     } else {
       $rest_url = "${rest_protocol}${xlr_rest_user}:${xlr_rest_password}@${xlr_http_bind_address}:${xlr_http_port}/${xlr_http_context_root}"

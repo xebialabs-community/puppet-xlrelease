@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rake'
-gem 'puppet-lint'
+gem "puppet-lint", :git => 'https://github.com/rodjek/puppet-lint.git'
 gem 'rspec-puppet', '~> 1.0.0'
 gem 'rspec-system-puppet'
 gem 'puppetlabs_spec_helper'

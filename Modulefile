@@ -7,6 +7,6 @@ summary       'An installation and intergration module for Xl-Release by xebiala
 description   ''
 project_page  'https://github.com/WianVos/puppet-xlrelease'
 
-dependency 'puppetlabs/stdlib'
-dependency 'puppetlabs/concat'
-
+dependency 'puppetlabs/stdlib', '>= 4.1.0'
+dependency 'puppetlabs/inifile', '>= 1.0.0'
+dependency 'puppetlabs/concat', '>= 1.1.0'

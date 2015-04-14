@@ -14,6 +14,7 @@ PuppetLint.configuration.send('disable_class_parameter_defaults')
 PuppetLint.configuration.send('disable_class_inherits_from_params_class')
 # http://puppet-lint.com/checks/80chars/
 PuppetLint.configuration.send('disable_80chars')
+PuppetLint.configuration.send('disable_autoloader_layout')
 
 exclude_paths = [
   "pkg/**/*",
