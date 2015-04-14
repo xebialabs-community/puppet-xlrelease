@@ -81,6 +81,44 @@ this will install a basic instance of xl-release at /opt/xl-release/xl-release-s
         }
     }
 
+**adding a xl-deploy server to the configuration from a different system using puppet** 
+this code could be used in a manifest when installing a xl-deploy server using puppet
+
+    xlrelease_xld_server{'default':
+             properties => { 'url' => "http://${fqdn}:4516/<context_root>",
+                             'username' => 'your xld user',
+                             'password' => 'your xld password' 
+                            }
+             rest_url => 'http://user:password@your.xl-release.com:5516/<something>'
+        } 
+
+**adding a jenkins server to the configuration from a different system using puppet**
+this code could be used in a manifest when installing a jenkins server using puppet
+
+    xlrelease_config_item{'jenkins_default':
+        type => 'jenkins.Server',
+        rest_url => 'http://user:password@your.xl-release.com:5516/<something>',
+        properties => { username: "jenkins user name"
+                        title: "title in xlr"
+                        proxyHost: <optional proxy host .. null for no proxy>
+                        proxyPort: <optional proxy port .. null for no port>
+                        password: "jenkins user password"
+                        url: 'http://your_jenkins_host_goes_here:and_the_port_here'
+                        }
+    }
+
+**adding a git repo to the configuration form a different system using puppet**
+
+    xlrelease_config_item{'your_git_repo':
+        type => 'git.Repository',
+        rest_url => 'http://user:password@your.xl-release.com:5516/<something>',
+        properties => { username: "git user name"
+                        title: "title in xlr"
+                        password: "git user password"
+                        url: 'http://url.to.git/repo'
+                       }
+    }
+
 
 ###using hiera 
 
@@ -131,6 +169,9 @@ the module commes equiped with a hash parameters for use with hiera
 
       
 ##Reference
+
+####Public classes
+
 **xlrelease**
 #####os_user         
     the user that will be used to run xlr and installed on the os by the module (unless it's already there)
@@ -214,6 +255,38 @@ the module commes equiped with a hash parameters for use with hiera
      allows for the specification of multiple xl-deploy instances in a hash format (see instructions above)
 #####xlr_config_item_hash         
      allows for the specifiaction of multiple xl-release configuration items in a hash format (see instructions above) 
+
+####types and provider pairs
+**xlrelease_xld_server**
+
+this resource can be used to configure a xl-deploy instance in a xlr instance
+
+#####type
+   the type of ci to configure in xlr (no point in changing this on this resource !!!!)
+   default : 'xlrelease.DeployitServerDefinition'     
+#####properties
+   the properties the should be configured in xld 
+        'url': the url to reach the xldeploy server on 
+        'username': the username of the xldeploy server
+        'password': the password to go along with the username
+#####rest_url
+   a url to reach the external xlr server on (which is optional) 
+   use this if u are using this resource from a different server other than the xlr server
+   default: undef
+
+**xlrelease_config_item**
+
+this resource can be used to influence a configuration item in an xlr instance
+
+#####type
+   the type of ci to configure in xlr 
+   posiblities: jenkins.Server, git.Repository (amongst others ... this has to be valid in xlr)
+#####properties
+   the properties the should be configured in xld (dependent on the type)
+#####rest_url
+   a url to reach the external xlr server on (which is optional) 
+   use this if u are using this resource from a different server other than the xlr server
+   default: undef
 
 ##Limitations
 
