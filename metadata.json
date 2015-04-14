@@ -1,5 +1,5 @@
 {
-  "name": "puppet-xlrelease",
+  "name": "xebialabs-xlrelease",
   "version": "1.0.0",
   "author": "xebialabs",
   "summary": "Puppet module for xlrelease",
