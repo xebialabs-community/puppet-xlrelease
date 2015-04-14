@@ -30,7 +30,8 @@ Puppet::Type.newtype(:xlrelease_xld_server) do
   end
 
   newparam(:type) do
-    desc 'Type of the CI'
+    desc 'Type of the CI: usually xlrelease.DeployitServerDefinition'
+    defaultto 'xlrelease.DeployitServerDefinition'
   end
 
   newproperty(:properties) do
