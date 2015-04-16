@@ -12,3 +12,13 @@ notifications:
   hipchat:
     rooms:
       secure: BeJR2PG5ihon8W9wK/XNMPdDfMG0D+HsR3NxPZ8L3acRh53PlAFS2agmiJCIQ113uVTUgr4oD6R8OyePGPhupY7hTe3FIjnrJjsmi8JjOlynfaGr/2z/lh1RxjWW3hMlCAtcc/FH7EPm7qTUVigh1IrNx7U9N++hNP6PvLodSz8=
+deploy:
+  provider: releases
+  api_key:
+    secure: SafK1KBhARFapRSJpPYzxZ+VJpDrtXOFv3qrmo55ff3Mw6FrSmAxq5DdpKo41M6ShjH3iVfRSZcfXT+ltJzzAqsZPXc5NwfDKfZOZa2inMwygpYvevdRqAGQXcyPpxhIbCfsiFeaQR4Pj4/EvZURm/km15l0n5V4lIWFxBzNvDw=
+  file: pkg/puppet-xlrelease-1.0.0.tar.gz
+  skip_cleanup: true
+  on:
+    all_branches: true
+    tags: true
+    repo: xebialabs/puppet-xlrelease
