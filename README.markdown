@@ -14,7 +14,7 @@
 
 ##Overview
 
-A module that takes care of the installation and configuration regarding XL-Release by Xebialabs      
+A module that takes care of the installation and configuration regarding XL Release by Xebialabs      
 
 ##Module Description
 This Module is geared toward the installation and configuration of Xebialabs XL-Release. It will take care of the installation of xl-release on linux based systems as well as doing a lot of the standard configuration required to setup a production ready instance of xl-release.
