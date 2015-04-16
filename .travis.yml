@@ -1,11 +1,14 @@
----
 language: ruby
 before_install: rm Gemfile.lock || true
 rvm:
-  - 1.9.3
+- 1.9.3
 script: bundle exec rake spec
 env:
   matrix:
   - PUPPET_VERSION="~> 3.2.0"
   - PUPPET_VERSION="~> 3.3.2"
   - PUPPET_VERSION="~> 3.7.2"
+notifications:
+  hipchat:
+    rooms:
+      secure: BeJR2PG5ihon8W9wK/XNMPdDfMG0D+HsR3NxPZ8L3acRh53PlAFS2agmiJCIQ113uVTUgr4oD6R8OyePGPhupY7hTe3FIjnrJjsmi8JjOlynfaGr/2z/lh1RxjWW3hMlCAtcc/FH7EPm7qTUVigh1IrNx7U9N++hNP6PvLodSz8=
