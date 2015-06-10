@@ -11,7 +11,7 @@ if File.exist?('/etc/xl-release/xl-release-server.conf')
     when /0.0.0.0|localhost/
       settings['xlrelease.server.address'] = Facter.value('fqdn') || Facter.value('ipaddress')
     else
-      settings['xlrelease.server.address'] = settings['http.bind.address']
+      settings['xlrelease.server.address'] = settings['http.bind.address'].chomp
   end
 
 
@@ -22,43 +22,43 @@ if File.exist?('/etc/xl-release/xl-release-server.conf')
 
   Facter.add("xlrelease_bind_dn") do
       setcode do
-        settings['http.bind.address']
+        settings['http.bind.address'].chomp
       end
   end
 
   Facter.add("xlrelease_http_port") do
       setcode do
-        settings['http.port']
+        settings['http.port'].chomp
       end
   end
 
   Facter.add("xlrelease_context_root") do
       setcode do
-        settings['http.context.root']
+        settings['http.context.root'].chomp
       end
   end
 
   Facter.add("xlrelease_ssl") do
       setcode do
-        settings['ssl']
+        settings['ssl'].chomp
       end
   end
 
   Facter.add("xlrelease_server_address") do
     setcode do
-      settings['xlrelease.server.address']
+      settings['xlrelease.server.address'].chomp
     end
   end
 
   Facter.add("xlrelease_rest_url") do
     setcode do
-      settings['xlrelease.rest.url']
+      settings['xlrelease.rest.url'].chomp
     end
   end
 
   Facter.add("xlrelease_encrypted_password") do
     setcode do
-      settings['xlrelease.admin.password']
+      settings['xlrelease.admin.password'].chomp
     end
   end
 end
