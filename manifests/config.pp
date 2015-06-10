@@ -68,15 +68,16 @@ class xlrelease::config {
       'xlrelease.admin.password':
       setting => 'admin.password',
       value   => $xlr_admin_password;
+    }
   } else {
     ini_setting {
       'xlrelease.admin.password':
       setting => 'admin.password',
       value   => $xlrelease_encrypted_password;
+    }
   }
 
   ini_setting {
-
     'xlrelease.http.port':
     setting => 'http.port',
     value   => $xlr_http_port;
