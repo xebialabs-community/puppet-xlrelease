@@ -58,7 +58,7 @@ if File.exist?('/etc/xl-release/xl-release-server.conf')
 
   Facter.add("xlrelease_encrypted_password") do
     setcode do
-      settings['xlrelease.admin.password'].chomp
+      settings['admin.password'].chomp
     end
   end
 end
