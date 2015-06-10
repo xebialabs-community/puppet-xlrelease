@@ -1,7 +1,7 @@
 settings = {}
 
-if File.exist?('/etc/xlrelease/xlrelease.conf')
-    File.open('/etc/xlrelease/xlrelease.conf').each do |line|
+if File.exist?('/etc/xl-release/xl-release-server.conf')
+    File.open('/etc/xl-release/xl-release-server.conf').each do |line|
       key, value = line.split '=' , 2
       settings[key] = value
     end
