@@ -67,13 +67,13 @@ class xlrelease::config {
     ini_setting {
       'xlrelease.admin.password':
       setting => 'admin.password',
-      value   => $xlr_admin_password;
+      value   => $xlr_admin_password
     }
   } else {
     ini_setting {
       'xlrelease.admin.password':
       setting => 'admin.password',
-      value   => $xlrelease_encrypted_password;
+      value   => $xlrelease_encrypted_password
     }
   }
 
