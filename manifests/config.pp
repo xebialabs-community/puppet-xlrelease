@@ -63,7 +63,7 @@ class xlrelease::config {
   #  path   => "${xlr_serverhome}/conf/deployit-defaults.properties",
   #}
 
-  if $xlrelease_encrypted_password != undef
+  if $xlrelease_encrypted_password != undef {
     ini_setting {
       'xlrelease.admin.password':
       setting => 'admin.password',
