@@ -7,7 +7,7 @@ if File.exist?('/etc/xl-release/xl-release-server.conf')
     end
 
 
-  case settings['http.bind.address'].chomp
+  case settings['http.bind.address']
     when /0.0.0.0|localhost/
       settings['xlrelease.server.address'] = Facter.value('fqdn') || Facter.value('ipaddress')
     else
