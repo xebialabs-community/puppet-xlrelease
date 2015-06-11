@@ -29,7 +29,9 @@ Puppet::Type.type(:xlrelease_config_item).provide :rest, :parent => Puppet::Prov
   end
 
   def properties
-    get_config_item(resource[:title])["properties"]
+   get_config_item(resource[:title])["properties"].select{|k,v| v != nil }
+
+
   end
 
   def properties=(value)
