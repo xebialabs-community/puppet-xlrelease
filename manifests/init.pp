@@ -66,6 +66,32 @@
 # [*xlr_admin_password*]
 #    specifies the admin password xlr will be setup with
 #    default: xebialabs
+# [*xlr_repository_type*]
+#    specifies if a database repository should be used
+#    default undef
+#    possible value: database
+# [*xlr_datastore_jdbc_driver_url*]
+#    specifies the url where the database driver for the particular database can be downloaded
+#    tipicly a database supplier url
+#    default: undef
+#    Mandatory when repository type is database
+# [*xlr_datastore_url*]
+#    specifies the url to the datastore to be used
+#    default: undef
+#    mandatory when repository_type = database
+# [*xlr_datastore_user*]
+#    specifies the username to be used with the database url
+#    default: undef
+#    mandatory when repository_type = database
+# [*xlr_datastore_password*]
+#    specifies the password to be used in combination with the database user
+#    default: undef
+#    mandatory when repository_type = database
+# [*xlr_datastore_databasetype*]
+#    specifies what database where going to use
+#    default: undef
+#    mandatory when repository_type = database
+#    supported values: postgresql, mysql
 # [*java_home*]
 #    specifies the java_home which will be used to run xlr
 #    default: 'RedHat' : '/usr/lib/jvm/jre-1.7.0-openjdk.x86_64'
