@@ -68,7 +68,7 @@
 #    default: xebialabs
 # [*xlr_repository_type*]
 #    specifies if a database repository should be used
-#    default undef
+#    default standalone
 #    possible value: database
 # [*xlr_datastore_jdbc_driver_url*]
 #    specifies the url where the database driver for the particular database can be downloaded
