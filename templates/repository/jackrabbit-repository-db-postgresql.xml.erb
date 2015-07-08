@@ -6,19 +6,19 @@
 
 <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
     <param name="driver" value="org.postgresql.Driver"/>
-    <param name="url" value="<%= @datastore_url %>"/>
+    <param name="url" value="<%= @xlr_datastore_url %>"/>
     <param name="schemaObjectPrefix" value="fs_" />
     <param name="schema" value="postgresql" />
-    <param name="user" value="<%= @datastore_user %>" />
-    <param name="password" value="<%= @datastore_password %>" />
+    <param name="user" value="<%= @xlr_datastore_user %>" />
+    <param name="password" value="<%= @xlr_datastore_password %>" />
 </FileSystem>
 
 <DataStore class="org.apache.jackrabbit.core.data.db.DbDataStore">
     <param name="driver" value="org.postgresql.Driver"/>
-    <param name="url" value="<%= @datastore_url %>"/>
+    <param name="url" value="<%= @xlr_datastore_url %>"/>
     <param name="databaseType" value="postgresql"/>
-    <param name="user" value="<%= @datastore_user %>" />
-    <param name="password" value="<%= @datastore_password %>" />
+    <param name="user" value="<%= @xlr_datastore_user %>" />
+    <param name="password" value="<%= @xlr_datastore_password %>" />
 </DataStore>
 
 
@@ -37,17 +37,17 @@
 <Workspace name="${wsp.name}">
     <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
         <param name="driver" value="org.postgresql.Driver"/>
-        <param name="url" value="<%= @datastore_url %>"/>
+        <param name="url" value="<%= @xlr_datastore_url %>"/>
         <param name="schemaObjectPrefix" value="${wsp.name}_" />
         <param name="schema" value="postgresql" />
-        <param name="user" value="<%= @datastore_user %>" />
-        <param name="password" value="<%= @datastore_password %>" />
+        <param name="user" value="<%= @xlr_datastore_user %>" />
+        <param name="password" value="<%= @xlr_datastore_password %>" />
     </FileSystem>
     <PersistenceManager class="org.apache.jackrabbit.core.persistence.bundle.PostgreSQLPersistenceManager">
         <param name="driver" value="org.postgresql.Driver"/>
-        <param name="url" value="<%= @datastore_url %>" />
-        <param name="user" value="<%= @datastore_user %>" />
-        <param name="password" value="<%= @datastore_password %>" />
+        <param name="url" value="<%= @xlr_datastore_url %>" />
+        <param name="user" value="<%= @xlr_datastore_user %>" />
+        <param name="password" value="<%= @xlr_datastore_password %>" />
         <param name="schemaObjectPrefix" value="${wsp.name}_" />
     </PersistenceManager>
 
@@ -61,17 +61,17 @@
 <Versioning rootPath="${rep.home}/version">
     <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
         <param name="driver" value="org.postgresql.Driver"/>
-        <param name="url" value="<%= @datastore_url %>"/>
+        <param name="url" value="<%= @xlr_datastore_url %>"/>
         <param name="schemaObjectPrefix" value="version_" />
         <param name="schema" value="postgresql" />
-        <param name="user" value="<%= @datastore_user %>" />
-        <param name="password" value="<%= @datastore_password %>" />
+        <param name="user" value="<%= @xlr_datastore_user %>" />
+        <param name="password" value="<%= @xlr_datastore_password %>" />
     </FileSystem>
 
     <PersistenceManager class="org.apache.jackrabbit.core.persistence.bundle.PostgreSQLPersistenceManager">
-        <param name="url" value="<%= @datastore_url %>" />
-        <param name="user" value="<%= @datastore_user %>" />
-        <param name="password" value="<%= @datastore_password %>" />
+        <param name="url" value="<%= @xlr_datastore_url %>" />
+        <param name="user" value="<%= @xlr_datastore_user %>" />
+        <param name="password" value="<%= @xlr_datastore_password %>" />
         <param name="schemaObjectPrefix" value="version_" />
     </PersistenceManager>
 </Versioning>

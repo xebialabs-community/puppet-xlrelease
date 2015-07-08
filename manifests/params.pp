@@ -21,6 +21,12 @@ class xlrelease::params {
   $xlr_rest_user                = 'admin'
   $xlr_rest_password            = 'xebialabs'
   $xlr_admin_password           = 'xebialabs'
+  $xlr_repository_type          = $xlrelease::params::xlr_repository_type
+  $xlr_datastore_jdbc_driver_url= $xlrelease::params::xlr_datastore_jdbc_driver_url
+  $xlr_datastore_url            = $xlrelease::params::xlr_datastore_url
+  $xlr_datastore_user           = $xlrelease::params::xlr_datastore_user
+  $xlr_datastore_password       = $xlrelease::params::xlr_datastore_password
+  $xlr_datastore_databasetype   = $xlrelease::params::xlr_datastore_databasetype
 
   $os_user        = 'xl-release'
   $os_group       = 'xl-release'

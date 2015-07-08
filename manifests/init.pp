@@ -140,6 +140,12 @@ class xlrelease (
   $xlr_rest_user                = $xlrelease::params::xlr_rest_user,
   $xlr_rest_password            = $xlrelease::params::xlr_rest_password,
   $xlr_admin_password           = $xlrelease::params::xlr_admin_password,
+  $xlr_repository_type          = $xlrelease::params::xlr_repository_type
+  $xlr_datastore_jdbc_driver_url= $xlrelease::params::xlr_datastore_jdbc_driver_url
+  $xlr_datastore_url            = $xlrelease::params::xlr_datastore_url
+  $xlr_datastore_user           = $xlrelease::params::xlr_datastore_user
+  $xlr_datastore_password       = $xlrelease::params::xlr_datastore_password
+  $xlr_datastore_databasetype   = $xlrelease::params::xlr_datastore_databasetype
   $java_home                    = $xlrelease::params::java_home,
   $install_java                 = $xlrelease::params::install_java,
   $install_type                 = $xlrelease::params::install_type,
@@ -148,6 +154,7 @@ class xlrelease (
   $xlr_xldeploy_hash            = {},
   $xlr_config_item_hash         = {}
 ) inherits xlrelease::params {
+
 
 
   # compose some variables based on the input to the class
@@ -178,6 +185,7 @@ class xlrelease (
 
   anchor { 'xlrelease::begin': } ->
   class  { '::xlrelease::install': } ->
+  class  { '::xlrelease::repository': } ->
   class  { '::xlrelease::config': } ~>
   class  { '::xlrelease::service': } ->
   class  { '::xlrelease::postconfig':} ->
