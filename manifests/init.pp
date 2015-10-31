@@ -126,7 +126,6 @@ class xlrelease (
   $xlr_version                  = $xlrelease::params::xlr_version,
   $xlr_basedir                  = $xlrelease::params::xlr_basedir,
   $xlr_serverhome               = $xlrelease::params::xlr_serverhome,
-  $xlr_licsource                = $xlrelease::params::xlr_licsource,
   $xlr_repopath                 = $xlrelease::params::xlr_repopath,
   $xlr_initrepo                 = $xlrelease::params::xlr_initrepo,
   $xlr_http_port                = $xlrelease::params::xlr_http_port,
