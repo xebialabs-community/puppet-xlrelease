@@ -31,7 +31,7 @@ class xlrelease::params {
 
   case $::osfamily {
     'RedHat' : {
-      $java_home = '/usr/lib/jvm/jre-1.7.0-openjdk.x86_64'
+      $java_home = '/usr/lib/jvm/jre-1.7.0-openjdk'
     }
     'Debian' : {
       $java_home = '/usr/lib/jvm/java-7-openjdk-amd64'
