@@ -158,7 +158,7 @@ class xlrelease (
   }
 
 
-  if version_comp($xlr_version, '4.6.9') > 0 {
+  if versioncmp($xlr_version, '4.6.9') > 0 {
     $xlr_licsource = 'https://dist.xebialabs.com/customer/licenses/download/v3/xl-release-license.lic'
   } else {
     $xlr_licsource = 'https://dist.xebialabs.com/customer/licenses/download/v2/xl-release-license.lic'
