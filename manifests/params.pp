@@ -7,7 +7,6 @@ class xlrelease::params {
   $xlr_version                  = '4.5.1'
   $xlr_basedir                  = '/opt/xl-release'
   $xlr_serverhome               = '/opt/xl-release/xl-release-server'
-  $xlr_licsource                = 'https://dist.xebialabs.com/customer/licenses/download/v2/xl-release-license.lic'
   $xlr_repopath                 = 'repository'
   $xlr_initrepo                 = true
   $xlr_http_port                = '5516'
