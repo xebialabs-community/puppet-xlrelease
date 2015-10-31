@@ -180,6 +180,6 @@ class xlrelease (
   class  { '::xlrelease::install': } ->
   class  { '::xlrelease::config': } ~>
   class  { '::xlrelease::service': } ->
-  class  { '::xlrelease::postconfig':} ->
+  class  { '::xlrelease::postconfig': } ->
   anchor { 'xlrelease::end': }
 }
