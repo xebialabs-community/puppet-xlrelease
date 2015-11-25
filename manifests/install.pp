@@ -41,9 +41,11 @@ class xlrelease::install {
   if str2bool($install_java) {
     case $::osfamily {
       'RedHat' : {
+        $java_packages = ['openjdk-7-jdk']
         if !defined(Package['java-1.7.0-openjdk']){
           package { $java_packages: ensure => present }
         }
+        $unzip_packages = ['unzip']
         if !defined(Package['unzip']){
           package { $unzip_packages: ensure => present }
         }
