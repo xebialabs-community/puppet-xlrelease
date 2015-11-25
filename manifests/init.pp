@@ -152,7 +152,6 @@ class xlrelease (
   $xlr_version                  = $xlrelease::params::xlr_version,
   $xlr_basedir                  = $xlrelease::params::xlr_basedir,
   $xlr_serverhome               = $xlrelease::params::xlr_serverhome,
-  $xlr_licsource                = $xlrelease::params::xlr_licsource,
   $xlr_repopath                 = $xlrelease::params::xlr_repopath,
   $xlr_initrepo                 = $xlrelease::params::xlr_initrepo,
   $xlr_http_port                = $xlrelease::params::xlr_http_port,
@@ -191,6 +190,13 @@ class xlrelease (
   }
 
 
+  if versioncmp($xlr_version, '4.6.9') > 0 {
+    $xlr_licsource = 'https://dist.xebialabs.com/customer/licenses/download/v3/xl-release-license.lic'
+  } else {
+    $xlr_licsource = 'https://dist.xebialabs.com/customer/licenses/download/v2/xl-release-license.lic'
+  }
+
+
   if str2bool($::xlr_ssl) {
     $rest_protocol = 'https://'
     # Check certificate validation
@@ -214,6 +220,6 @@ class xlrelease (
   class  { '::xlrelease::repository': } ->
   class  { '::xlrelease::config': } ~>
   class  { '::xlrelease::service': } ->
-  class  { '::xlrelease::postconfig':} ->
+  class  { '::xlrelease::postconfig': } ->
   anchor { 'xlrelease::end': }
 }
