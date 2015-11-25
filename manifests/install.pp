@@ -42,24 +42,15 @@ class xlrelease::install {
     case $::osfamily {
       'RedHat' : {
         $java_packages = ['java-1.7.0-openjdk']
-        if !defined("Package[${java_packages}]"){
-          package { $java_packages: ensure => present }
-        }
         $unzip_packages = ['unzip']
-        if !defined("Package[${unzip_packages}]"){
-          package { $unzip_packages: ensure => present }
-        }
+        ensure_packages($java_packages)
+        ensure_packages($unzip_packages)
       }
       'Debian' : {
         $java_packages = ['openjdk-7-jdk']
-        if !defined("Package[${java_packages}]"){
-          package { $java_packages: ensure => present }
-        }
         $unzip_packages = ['unzip']
-        if !defined("Package[${unzip_packages}]"){
-          package { $unzip_packages: ensure => present }
-        }
-
+        ensure_packages($java_packages)
+        ensure_packages($unzip_packages)
       }
       default  : {
         fail("${::osfamily}:${::operatingsystem} not supported by this module")
