@@ -42,7 +42,7 @@ class xlrelease::install {
     case $::osfamily {
       'RedHat' : {
         $java_packages = ['java-1.7.0-openjdk']
-        if !defined(Package[$java_packages]){
+        if !defined(Type[Resource['package', $java_packages]]){
           package { $java_packages: ensure => present }
         }
         $unzip_packages = ['unzip']
@@ -52,7 +52,7 @@ class xlrelease::install {
       }
       'Debian' : {
         $java_packages = ['openjdk-7-jdk']
-        if !defined(Package[$java_packages]){
+        if !defined(Type[Resource['package', $java_packages]]){
           package { $java_packages: ensure => present }
         }
         $unzip_packages = ['unzip']
