@@ -1,5 +1,6 @@
 # == Class xlrelease::install
 #
+# merge trouble
 class xlrelease::install {
 
   $xlr_version             = $xlrelease::xlr_version
