@@ -114,7 +114,7 @@
 # [*xlr_config_item_hash*]
 #    allows for the specifiaction of multiple xl-release configuration items in a hash format (see instructions in documentation)
 # [*custom_xlr_licsource*]
-#    specify a custom http source to download the license from 
+#    specify a custom http source to download the license from
 # === basic usage
 # xlrelease_xld_server{'default':
 #   properties => { 'url' => 'http://your.xld.instance:4516/<context_root>',

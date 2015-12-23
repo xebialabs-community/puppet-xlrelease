@@ -12,8 +12,7 @@ class xlrelease::postconfig {
 
   $defaults = {
     rest_url => $rest_url,
-    require  => Xlrelease_check_connection['default'],
-    'type'   => 'xlrelease.DeployitServerDefinition',
+    require  => Xlrelease_check_connection['default']
   }
 
   # config stuff in xldeploy

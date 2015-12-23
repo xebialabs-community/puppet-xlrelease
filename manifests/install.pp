@@ -20,6 +20,7 @@ class xlrelease::install {
   $tmp_dir         = $xlrelease::tmp_dir
   $puppetfiles_xlrelease_source = $xlrelease::puppetfiles_xlrelease_source
 
+
   #flow controll
   anchor{ 'xlr install': }
   -> anchor{ 'xlr server_install': }
