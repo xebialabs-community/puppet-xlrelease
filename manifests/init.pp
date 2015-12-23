@@ -113,7 +113,8 @@
 #    allows for the specification of multiple xl-deploy instances in a hash format (see instructions in documentation)
 # [*xlr_config_item_hash*]
 #    allows for the specifiaction of multiple xl-release configuration items in a hash format (see instructions in documentation)
-#
+# [*custom_xlr_licsource*]
+#    specify a custom http source to download the license from 
 # === basic usage
 # xlrelease_xld_server{'default':
 #   properties => { 'url' => 'http://your.xld.instance:4516/<context_root>',
@@ -176,6 +177,7 @@ class xlrelease (
   $install_type                 = $xlrelease::params::install_type,
   $puppetfiles_xlrelease_source = $xlrelease::params::puppetfiles_xlrelease_source,
   $custom_download_server_url   = undef,
+  $custom_xlr_licsource         = undef,
   $xlr_xldeploy_hash            = {},
   $xlr_config_item_hash         = {}
 ) inherits xlrelease::params {
@@ -189,11 +191,14 @@ class xlrelease (
     $xlr_download_server_url = $custom_download_server_url
   }
 
-
-  if versioncmp($xlr_version, '4.6.9') > 0 {
-    $xlr_licsource = 'https://dist.xebialabs.com/customer/licenses/download/v3/xl-release-license.lic'
+  if ( $custom_xlr_licsource == undef ) {
+    if versioncmp($xlr_version, '4.6.9') > 0 {
+      $xlr_licsource = 'https://dist.xebialabs.com/customer/licenses/download/v3/xl-release-license.lic'
+    } else {
+      $xlr_licsource = 'https://dist.xebialabs.com/customer/licenses/download/v2/xl-release-license.lic'
+    }
   } else {
-    $xlr_licsource = 'https://dist.xebialabs.com/customer/licenses/download/v2/xl-release-license.lic'
+    $xlr_licsource = $custom_xlr_licsource
   }
 
 
