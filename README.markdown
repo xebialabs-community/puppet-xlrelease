@@ -1,5 +1,7 @@
 #xlrelease
 
+[![Build Status](https://travis-ci.org/xebialabs-community/puppet-xlrelease.svg?branch=master)](https://travis-ci.org/xebialabs-community/puppet-xlrelease)
+
 ####Table of Contents
 
 1. [Overview](#overview)
