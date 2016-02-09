@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-# <%= @productname %>  Start/Stop the <%= @productname %> daemon.
+# xl-release  Start/Stop the xl-release daemon.
 #
 # chkconfig: 2345 50 80
-# description: Runs <%= @productname %>
+# description: Runs xl-release
 #
 # Date: 07-02-2012 Version 1.0
 #
@@ -15,9 +15,8 @@
 . /etc/init.d/functions
 
 RUNNINGUSER="<%= @os_user %>"
-PROG="jetty"
+PROG="xlrelease"
 PIDFILE="/var/run/xl-release.pid"
-DEPLOYIT_HOME="<%= @xlr_serverhome %>"
 JAVA_HOME="<%= @java_home %>"
 
 PID=$(ps -fu $RUNNINGUSER | grep $PROG | awk '{print $2}')
