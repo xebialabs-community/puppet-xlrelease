@@ -25,7 +25,7 @@ class xlrelease::install {
   -> anchor{ 'xlr server_postinstall': }
   -> File['xlr conf dir link', 'xlr log dir link']
   -> File["$xlr_serverhome"]
-  -> File['/etc/init.d/xl-release']
+  -> File["${xlr_serverhome}/scripts"]
   -> anchor{ 'xlr install_end': }
 
 
@@ -130,28 +130,10 @@ class xlrelease::install {
     target => "${server_install_dir}/conf"
   }
 
-  ## put the init script in place
-  ## the template uses the following variables:
-  ## @os_user
-  ## @server_install_dir
-  file { '/etc/init.d/xl-release':
-    content => template("xlrelease/xl-release-initd-${::osfamily}.erb"),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0700'
-  }
-
-
 # setup homedir
   file { $xlr_serverhome:
     ensure => link,
     target => $server_install_dir,
-    owner  => $os_user,
-    group  => $os_group
-  }
-
-  file { "${xlr_serverhome}/scripts":
-    ensure => directory,
     owner  => $os_user,
     group  => $os_group
   }
@@ -168,7 +150,6 @@ class xlrelease::install {
         password             => $xlr_download_password,
         destinationdirectory => "${xlr_serverhome}/conf"
       }
-      -> Anchor['xlr install_end']
     }
     /^puppet/ : {
       File[$xlr_serverhome]
@@ -178,14 +159,34 @@ class xlrelease::install {
         group  => $os_group,
         source => $xlr_licsource,
       }
-      -> Anchor['xlr install_end']
     }
     undef   : {}
     default : { fail('xlr_licsource input unsupported')}
   }
 
+  file { "${xlr_serverhome}/scripts":
+    ensure => directory,
+    owner  => $os_user,
+    group  => $os_group
+  }
 
-
-
-
+  if versioncmp($xlr_version , '4.9.99') < 0 {
+    File["${xlr_serverhome}/scripts"] ->
+    file { '/etc/init.d/xl-release':
+      content => template("xlrelease/xl-release-initd-${::osfamily}.erb"),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0700'
+    } -> Anchor['xlr install_end']
+  } else {
+    File["${xlr_serverhome}/scripts"] ->
+    ini_setting { 'forkhack':
+      path    => "${xlr_serverhome}/conf/xlr-wrapper-linux.conf",
+      setting => 'wrapper.fork_hack',
+      value   => 'true',
+    } ->
+    exec {"/bin/echo ${os_user}|${xlr_serverhome}/bin/install-service.sh":
+      unless => "/usr/bin/test -f /etc/init.d/xl-release",
+    } -> Anchor['xlr install_end']
+  }
 }
