@@ -10,6 +10,7 @@ class xlrelease::install {
   $xlr_download_password   = $xlrelease::xlr_download_password
   $xlr_download_proxy_url  = $xlrelease::xlr_download_proxy_url
   $xlr_download_server_url = $xlrelease::xlr_download_server_url
+  $xlr_wrapper_settings    = $xlrelease::xlr_wrapper_settings
 
   $install_type    = $xlrelease::install_type
   $install_java    = $xlrelease::install_java
