@@ -156,6 +156,7 @@ class xlrelease::install {
     group  => $os_group
   }
 
+  create_resources('xlrelease::resources::wrappersetting', $xlr_wrapper_settings)
 
   case $xlr_licsource {
     /^http/ : {
