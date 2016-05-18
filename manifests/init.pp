@@ -83,6 +83,8 @@
 #   specifies the source location of the xlr installation for use with a puppetfiles installation type
 # [*custom_download_server_url*]
 #   specify a custom download url (other than the standard xebialabs one provided by the module)
+# [*xlr_wrapper_settings*]
+#    allows to modify the service wrapper conf
 # [*xlr_xldeploy_hash*]
 #    allows for the specification of multiple xl-deploy instances in a hash format (see instructions in documentation)
 # [*xlr_config_item_hash*]
@@ -145,6 +147,7 @@ class xlrelease (
   $install_type                 = $xlrelease::params::install_type,
   $puppetfiles_xlrelease_source = $xlrelease::params::puppetfiles_xlrelease_source,
   $custom_download_server_url   = undef,
+  $xlr_wrapper_settings         = {},
   $xlr_xldeploy_hash            = {},
   $xlr_config_item_hash         = {}
 ) inherits xlrelease::params {
