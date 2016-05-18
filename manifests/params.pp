@@ -7,6 +7,7 @@ class xlrelease::params {
   $xlr_version                  = '4.5.1'
   $xlr_basedir                  = '/opt/xl-release'
   $xlr_serverhome               = '/opt/xl-release/xl-release-server'
+  $xlr_custom_license_source    = undef
   $xlr_repopath                 = 'repository'
   $xlr_initrepo                 = true
   $xlr_http_port                = '5516'

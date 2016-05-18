@@ -22,7 +22,7 @@
 # [*xlr_serverhome*]
 #    specifies the xlrelease server home directory
 #    default: /opt/xl-release/xl-release-server
-# [*xlr_licsource*]
+# [*xlr_custom_license_source*]
 #    specifies where the xl-release license can be obtained
 #    default: no help there .. sorry
 # [*xlr_repopath*]
@@ -126,6 +126,7 @@ class xlrelease (
   $xlr_version                  = $xlrelease::params::xlr_version,
   $xlr_basedir                  = $xlrelease::params::xlr_basedir,
   $xlr_serverhome               = $xlrelease::params::xlr_serverhome,
+  $xlr_custom_license_source    = $xlrelease::params::xlr_custom_license_source,
   $xlr_repopath                 = $xlrelease::params::xlr_repopath,
   $xlr_initrepo                 = $xlrelease::params::xlr_initrepo,
   $xlr_http_port                = $xlrelease::params::xlr_http_port,
@@ -156,14 +157,6 @@ class xlrelease (
     $xlr_download_server_url = $custom_download_server_url
   }
 
-
-  if versioncmp($xlr_version, '4.6.9') > 0 {
-    $xlr_licsource = 'https://dist.xebialabs.com/customer/licenses/download/v3/xl-release-license.lic'
-  } else {
-    $xlr_licsource = 'https://dist.xebialabs.com/customer/licenses/download/v2/xl-release-license.lic'
-  }
-
-
   if str2bool($::xlr_ssl) {
     $rest_protocol = 'https://'
     # Check certificate validation
@@ -180,6 +173,18 @@ class xlrelease (
       $rest_url = "${rest_protocol}${xlr_rest_user}:${xlr_rest_password}@${xlr_http_bind_address}:${xlr_http_port}/${xlr_http_context_root}"
     }
   }
+
+  if ($xlr_custom_license_source == undef) {
+    if versioncmp($xlr_version, '4.6.9') > 0 {
+      $xlr_licsource = 'https://dist.xebialabs.com/customer/licenses/download/v3/xl-release-license.lic'
+    } else {
+      $xlr_licsource = 'https://dist.xebialabs.com/customer/licenses/download/v2/xl-release-license.lic'
+    }
+  } else {
+    $xlr_licsource = $xlr_custom_license_source
+  }
+
+
 # validate parameters here
 
   anchor { 'xlrelease::begin': } ->
