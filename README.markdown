@@ -49,6 +49,23 @@ This module requires the following:
     
 this will install a basic instance of xl-release at /opt/xl-release/xl-release-server which will respond on port 5516.
 
+###ldap configuration
+  class { 'xlrelease':
+    install_java => true,
+    install_type => 'download',
+    xlr_download_user => '<your download user>',
+    xlr_download_password => '<your download password>',
+    xlr_custom_license_source => 'https://dist.xebialabs.com/customer/licenses/download/v3/xl-release-license.lic',
+    ldap_server_url => 'ldap://localhost:1389/',
+    ldap_manager_dn => 'cn=admin,dc=example,dc=com',
+    ldap_manager_password => 'secret',
+    ldap_user_search_base => 'dc=example,dc=com',
+    ldap_user_search_filter => '(&amp;(uid={0})(objectClass=inetOrgPerson))',
+    ldap_group_search_base => 'ou=groups,dc=example,dc=com',
+    ldap_group_search_filter => '(memberUid={0})',
+  }
+
+
 ###adding configuration
 **adding a xl-deploy server to the configuration**
 
@@ -256,7 +273,21 @@ the module commes equiped with a hash parameters for use with hiera
 #####xlr_xldeploy_hash            
      allows for the specification of multiple xl-deploy instances in a hash format (see instructions above)
 #####xlr_config_item_hash         
-     allows for the specifiaction of multiple xl-release configuration items in a hash format (see instructions above) 
+     allows for the specifiaction of multiple xl-release configuration items in a hash format (see instructions above)
+#####ldap_server_url
+     ldap url to connect to
+#####ldap_manager_dn
+     principal to perform the initial bind to the LDAP server
+#####ldap_manager_password
+     credentials to perform the initial bind to the LDAP server
+#####ldap_user_search_base
+     ldap filter to use as a basis for searching for users
+#####ldap_user_search_filter
+     ldap filter to determine the LDAP dn for the user who is logging in
+#####ldap_group_search_base
+     ldap filter to use as a basis for searching for groups
+#####ldap_group_search_filter
+     ldap filter to determine the group memberships of the user
 
 ####types and provider pairs
 **xlrelease_xld_server**

@@ -24,6 +24,13 @@ class xlrelease::config {
   $os_group                     = $xlrelease::os_group
   $tmp_dir                      = $xlrelease::tmp_dir
   $puppetfiles_xlrelease_source = $xlrelease::puppetfiles_xlrelease_source
+  $ldap_server_url              = $xlrelease::ldap_server_url
+  $ldap_manager_dn              = $xlrelease::ldap_manager_dn
+  $ldap_manager_password        = $xlrelease::ldap_manager_password
+  $ldap_user_search_base        = $xlrelease::ldap_user_search_base
+  $ldap_user_search_filter      = $xlrelease::ldap_user_search_filter
+  $ldap_group_search_base       = $xlrelease::ldap_group_search_base
+  $ldap_group_search_filter     = $xlrelease::ldap_group_search_filter
 
   # Make this a private class
   if $caller_module_name != $module_name {
@@ -103,6 +110,12 @@ class xlrelease::config {
     value   => $xlr_importable_packages_path;
   }
 
+  if $ldap_server_url {
+    file{ "${xlr_serverhome}/conf/xl-release-security.xml":
+      ensure => file,
+      content => template('xlrelease/xl-release-security.xml.erb'),
+    }
+  }
 
   if str2bool($xlr_initrepo) {
       exec { 'init xl-release':

@@ -89,6 +89,20 @@
 #    allows for the specification of multiple xl-deploy instances in a hash format (see instructions in documentation)
 # [*xlr_config_item_hash*]
 #    allows for the specifiaction of multiple xl-release configuration items in a hash format (see instructions in documentation)
+# [*ldap_server_url*]
+#    ldap url to connect to
+# [*ldap_manager_dn*]
+#    principal to perform the initial bind to the LDAP server
+# [*ldap_manager_password*]
+#    credentials to perform the initial bind to the LDAP server
+# [*ldap_user_search_base*]
+#    ldap filter to use as a basis for searching for users
+# [*ldap_user_search_filter*]
+#    ldap filter to determine the LDAP dn for the user who is logging in
+# [*ldap_group_search_base*]
+#    ldap filter to use as a basis for searching for groups
+# [*ldap_group_search_filter*]
+#    ldap filter to determine the group memberships of the user
 #
 # === basic usage
 # xlrelease_xld_server{'default':
@@ -147,6 +161,13 @@ class xlrelease (
   $install_type                 = $xlrelease::params::install_type,
   $puppetfiles_xlrelease_source = $xlrelease::params::puppetfiles_xlrelease_source,
   $custom_download_server_url   = undef,
+  $ldap_server_url              = undef,
+  $ldap_manager_dn              = undef,
+  $ldap_manager_password        = undef,
+  $ldap_user_search_base        = undef,
+  $ldap_user_search_filter      = undef,
+  $ldap_group_search_base       = undef,
+  $ldap_group_search_filter     = undef,
   $xlr_wrapper_settings         = {},
   $xlr_xldeploy_hash            = {},
   $xlr_config_item_hash         = {}
