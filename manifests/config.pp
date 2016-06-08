@@ -44,6 +44,7 @@ class xlrelease::config {
   -> Ini_setting['xlrelease.admin.password','xlrelease.http.port','xlrelease.jcr.repository.path','xlrelease.jcr.repository.path',
                   'xlrelease.ssl','xlrelease.http.bind.address','xlrelease.http.context.root','xlrelease.importable.packages.path']
   -> Exec['init xl-release']
+  -> File['xlrelease plugins']
   -> anchor{ 'xlr config_end': }
 
   # resource defaults
@@ -63,6 +64,13 @@ class xlrelease::config {
 
   # actual resources
   file{"${xlr_serverhome}/conf/xl-release-server.conf":}
+
+  file { 'xlrelease plugins':
+    ensure       => present,
+    source       => 'puppet:///modules/xlrelease/plugins',
+    recurse      => true,
+    path         => "${xlr_serverhome}/plugins",
+  }
 
   # configuration settings
   #file { 'xlrelease default properties':
